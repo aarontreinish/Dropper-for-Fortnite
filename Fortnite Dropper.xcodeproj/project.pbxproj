@@ -1,0 +1,677 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0E9800C072023F11E3B15973 /* Pods_Fortnite_DropperUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CBC18464B332845A71999A2 /* Pods_Fortnite_DropperUITests.framework */; };
+		2183EC0D20FE2BA6002203D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2183EC0C20FE2BA6002203D3 /* AppDelegate.swift */; };
+		2183EC0F20FE2BA6002203D3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2183EC0E20FE2BA6002203D3 /* ViewController.swift */; };
+		2183EC1220FE2BA6002203D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2183EC1020FE2BA6002203D3 /* Main.storyboard */; };
+		2183EC1720FE2BB2002203D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2183EC1520FE2BB2002203D3 /* LaunchScreen.storyboard */; };
+		2183EC3D20FF7AB6002203D3 /* Burbank Big Condensed Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2183EC3C20FF7A61002203D3 /* Burbank Big Condensed Black.ttf */; };
+		2183EC432100BEF7002203D3 /* Fortnite Bus Sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2183EC422100BEF7002203D3 /* Fortnite Bus Sound.mp3 */; };
+		2183EC452100C45A002203D3 /* Hang Glider Sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2183EC442100C45A002203D3 /* Hang Glider Sound.mp3 */; };
+		2183EC4F2109162A002203D3 /* Assets 2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2183EC4E2109162A002203D3 /* Assets 2.xcassets */; };
+		3E7F0FD603AEFEB617F917DF /* Pods_Fortnite_Dropper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A49FD1DD2B50BB2EB420D58D /* Pods_Fortnite_Dropper.framework */; };
+		C5844935E9438A7AEE2C9912 /* Pods_Fortnite_DropperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7023EFE6989EEBB9F528DFC1 /* Pods_Fortnite_DropperTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2183EC1E20FE2BB2002203D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2183EC0120FE2BA6002203D3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2183EC0820FE2BA6002203D3;
+			remoteInfo = "Fortnite Dropper";
+		};
+		2183EC2920FE2BB2002203D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2183EC0120FE2BA6002203D3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2183EC0820FE2BA6002203D3;
+			remoteInfo = "Fortnite Dropper";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2183EC0920FE2BA6002203D3 /* Fortnite Dropper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fortnite Dropper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2183EC0C20FE2BA6002203D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2183EC0E20FE2BA6002203D3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2183EC1120FE2BA6002203D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2183EC1620FE2BB2002203D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2183EC1820FE2BB2002203D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2183EC1D20FE2BB2002203D3 /* Fortnite DropperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fortnite DropperTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2183EC2820FE2BB2002203D3 /* Fortnite DropperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fortnite DropperUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2183EC3C20FF7A61002203D3 /* Burbank Big Condensed Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Burbank Big Condensed Black.ttf"; sourceTree = "<group>"; };
+		2183EC422100BEF7002203D3 /* Fortnite Bus Sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Fortnite Bus Sound.mp3"; path = "../../../Downloads/Fortnite Bus Sound.mp3"; sourceTree = "<group>"; };
+		2183EC442100C45A002203D3 /* Hang Glider Sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Hang Glider Sound.mp3"; path = "../../../Downloads/Hang Glider Sound.mp3"; sourceTree = "<group>"; };
+		2183EC4E2109162A002203D3 /* Assets 2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Assets 2.xcassets"; path = "../../../Downloads/Assets 2.xcassets"; sourceTree = "<group>"; };
+		67D691751B07D52C7935ED1E /* Pods-Fortnite Dropper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fortnite Dropper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fortnite Dropper/Pods-Fortnite Dropper.release.xcconfig"; sourceTree = "<group>"; };
+		7023EFE6989EEBB9F528DFC1 /* Pods_Fortnite_DropperTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fortnite_DropperTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CBC18464B332845A71999A2 /* Pods_Fortnite_DropperUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fortnite_DropperUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A49FD1DD2B50BB2EB420D58D /* Pods_Fortnite_Dropper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fortnite_Dropper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC462FCC4B7FDF955B33AD51 /* Pods-Fortnite DropperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fortnite DropperTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fortnite DropperTests/Pods-Fortnite DropperTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AC6F230FA7CD0D15CF0310DE /* Pods-Fortnite DropperUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fortnite DropperUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fortnite DropperUITests/Pods-Fortnite DropperUITests.release.xcconfig"; sourceTree = "<group>"; };
+		BB2B14E27F43536944A3DC3C /* Pods-Fortnite Dropper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fortnite Dropper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fortnite Dropper/Pods-Fortnite Dropper.debug.xcconfig"; sourceTree = "<group>"; };
+		C5823B445EFA13C14202782B /* Pods-Fortnite DropperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fortnite DropperTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fortnite DropperTests/Pods-Fortnite DropperTests.release.xcconfig"; sourceTree = "<group>"; };
+		D52D742FE6BB99EC47ED4F84 /* Pods-Fortnite DropperUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fortnite DropperUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fortnite DropperUITests/Pods-Fortnite DropperUITests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2183EC0620FE2BA6002203D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E7F0FD603AEFEB617F917DF /* Pods_Fortnite_Dropper.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2183EC1A20FE2BB2002203D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5844935E9438A7AEE2C9912 /* Pods_Fortnite_DropperTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2183EC2520FE2BB2002203D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E9800C072023F11E3B15973 /* Pods_Fortnite_DropperUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2183EC0020FE2BA6002203D3 = {
+			isa = PBXGroup;
+			children = (
+				2183EC0B20FE2BA6002203D3 /* Fortnite Dropper */,
+				2183EC0A20FE2BA6002203D3 /* Products */,
+				2C146443A94A49FE9BA8C660 /* Frameworks */,
+				BBC16C5725940EA4436AB828 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		2183EC0A20FE2BA6002203D3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2183EC0920FE2BA6002203D3 /* Fortnite Dropper.app */,
+				2183EC1D20FE2BB2002203D3 /* Fortnite DropperTests.xctest */,
+				2183EC2820FE2BB2002203D3 /* Fortnite DropperUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2183EC0B20FE2BA6002203D3 /* Fortnite Dropper */ = {
+			isa = PBXGroup;
+			children = (
+				2183EC0C20FE2BA6002203D3 /* AppDelegate.swift */,
+				2183EC1020FE2BA6002203D3 /* Main.storyboard */,
+				2183EC0E20FE2BA6002203D3 /* ViewController.swift */,
+				2183EC4E2109162A002203D3 /* Assets 2.xcassets */,
+				2183EC1520FE2BB2002203D3 /* LaunchScreen.storyboard */,
+				2183EC1820FE2BB2002203D3 /* Info.plist */,
+				2183EC3C20FF7A61002203D3 /* Burbank Big Condensed Black.ttf */,
+				2183EC442100C45A002203D3 /* Hang Glider Sound.mp3 */,
+				2183EC422100BEF7002203D3 /* Fortnite Bus Sound.mp3 */,
+			);
+			path = "Fortnite Dropper";
+			sourceTree = "<group>";
+		};
+		2C146443A94A49FE9BA8C660 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A49FD1DD2B50BB2EB420D58D /* Pods_Fortnite_Dropper.framework */,
+				7023EFE6989EEBB9F528DFC1 /* Pods_Fortnite_DropperTests.framework */,
+				8CBC18464B332845A71999A2 /* Pods_Fortnite_DropperUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BBC16C5725940EA4436AB828 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BB2B14E27F43536944A3DC3C /* Pods-Fortnite Dropper.debug.xcconfig */,
+				67D691751B07D52C7935ED1E /* Pods-Fortnite Dropper.release.xcconfig */,
+				AC462FCC4B7FDF955B33AD51 /* Pods-Fortnite DropperTests.debug.xcconfig */,
+				C5823B445EFA13C14202782B /* Pods-Fortnite DropperTests.release.xcconfig */,
+				D52D742FE6BB99EC47ED4F84 /* Pods-Fortnite DropperUITests.debug.xcconfig */,
+				AC6F230FA7CD0D15CF0310DE /* Pods-Fortnite DropperUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2183EC0820FE2BA6002203D3 /* Fortnite Dropper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2183EC3120FE2BB2002203D3 /* Build configuration list for PBXNativeTarget "Fortnite Dropper" */;
+			buildPhases = (
+				03F364FBC0CF72E20B2B340A /* [CP] Check Pods Manifest.lock */,
+				2183EC0520FE2BA6002203D3 /* Sources */,
+				2183EC0620FE2BA6002203D3 /* Frameworks */,
+				2183EC0720FE2BA6002203D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Fortnite Dropper";
+			productName = "Fortnite Dropper";
+			productReference = 2183EC0920FE2BA6002203D3 /* Fortnite Dropper.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2183EC1C20FE2BB2002203D3 /* Fortnite DropperTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2183EC3420FE2BB2002203D3 /* Build configuration list for PBXNativeTarget "Fortnite DropperTests" */;
+			buildPhases = (
+				AB8ED8DC9FA810E45BB6606F /* [CP] Check Pods Manifest.lock */,
+				2183EC1920FE2BB2002203D3 /* Sources */,
+				2183EC1A20FE2BB2002203D3 /* Frameworks */,
+				2183EC1B20FE2BB2002203D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2183EC1F20FE2BB2002203D3 /* PBXTargetDependency */,
+			);
+			name = "Fortnite DropperTests";
+			productName = "Fortnite DropperTests";
+			productReference = 2183EC1D20FE2BB2002203D3 /* Fortnite DropperTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2183EC2720FE2BB2002203D3 /* Fortnite DropperUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2183EC3720FE2BB2002203D3 /* Build configuration list for PBXNativeTarget "Fortnite DropperUITests" */;
+			buildPhases = (
+				EF0A292C4CBAA7F19882994C /* [CP] Check Pods Manifest.lock */,
+				2183EC2420FE2BB2002203D3 /* Sources */,
+				2183EC2520FE2BB2002203D3 /* Frameworks */,
+				2183EC2620FE2BB2002203D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2183EC2A20FE2BB2002203D3 /* PBXTargetDependency */,
+			);
+			name = "Fortnite DropperUITests";
+			productName = "Fortnite DropperUITests";
+			productReference = 2183EC2820FE2BB2002203D3 /* Fortnite DropperUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2183EC0120FE2BA6002203D3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "Aaron Treinish";
+				TargetAttributes = {
+					2183EC0820FE2BA6002203D3 = {
+						CreatedOnToolsVersion = 9.3.1;
+					};
+					2183EC1C20FE2BB2002203D3 = {
+						CreatedOnToolsVersion = 9.3.1;
+						TestTargetID = 2183EC0820FE2BA6002203D3;
+					};
+					2183EC2720FE2BB2002203D3 = {
+						CreatedOnToolsVersion = 9.3.1;
+						TestTargetID = 2183EC0820FE2BA6002203D3;
+					};
+				};
+			};
+			buildConfigurationList = 2183EC0420FE2BA6002203D3 /* Build configuration list for PBXProject "Fortnite Dropper" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2183EC0020FE2BA6002203D3;
+			productRefGroup = 2183EC0A20FE2BA6002203D3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2183EC0820FE2BA6002203D3 /* Fortnite Dropper */,
+				2183EC1C20FE2BB2002203D3 /* Fortnite DropperTests */,
+				2183EC2720FE2BB2002203D3 /* Fortnite DropperUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2183EC0720FE2BA6002203D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2183EC1720FE2BB2002203D3 /* LaunchScreen.storyboard in Resources */,
+				2183EC4F2109162A002203D3 /* Assets 2.xcassets in Resources */,
+				2183EC432100BEF7002203D3 /* Fortnite Bus Sound.mp3 in Resources */,
+				2183EC3D20FF7AB6002203D3 /* Burbank Big Condensed Black.ttf in Resources */,
+				2183EC1220FE2BA6002203D3 /* Main.storyboard in Resources */,
+				2183EC452100C45A002203D3 /* Hang Glider Sound.mp3 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2183EC1B20FE2BB2002203D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2183EC2620FE2BB2002203D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		03F364FBC0CF72E20B2B340A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Fortnite Dropper-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB8ED8DC9FA810E45BB6606F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Fortnite DropperTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF0A292C4CBAA7F19882994C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Fortnite DropperUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2183EC0520FE2BA6002203D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2183EC0F20FE2BA6002203D3 /* ViewController.swift in Sources */,
+				2183EC0D20FE2BA6002203D3 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2183EC1920FE2BB2002203D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2183EC2420FE2BB2002203D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2183EC1F20FE2BB2002203D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2183EC0820FE2BA6002203D3 /* Fortnite Dropper */;
+			targetProxy = 2183EC1E20FE2BB2002203D3 /* PBXContainerItemProxy */;
+		};
+		2183EC2A20FE2BB2002203D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2183EC0820FE2BA6002203D3 /* Fortnite Dropper */;
+			targetProxy = 2183EC2920FE2BB2002203D3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2183EC1020FE2BA6002203D3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2183EC1120FE2BA6002203D3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2183EC1520FE2BB2002203D3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2183EC1620FE2BB2002203D3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2183EC2F20FE2BB2002203D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2183EC3020FE2BB2002203D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2183EC3220FE2BB2002203D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB2B14E27F43536944A3DC3C /* Pods-Fortnite Dropper.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NP8854APR4;
+				INFOPLIST_FILE = "Fortnite Dropper/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AaronTreinish.Fortnite-Dropper";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2183EC3320FE2BB2002203D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67D691751B07D52C7935ED1E /* Pods-Fortnite Dropper.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NP8854APR4;
+				INFOPLIST_FILE = "Fortnite Dropper/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AaronTreinish.Fortnite-Dropper";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2183EC3520FE2BB2002203D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC462FCC4B7FDF955B33AD51 /* Pods-Fortnite DropperTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Fortnite DropperTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AaronTreinish.Fortnite-DropperTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fortnite Dropper.app/Fortnite Dropper";
+			};
+			name = Debug;
+		};
+		2183EC3620FE2BB2002203D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5823B445EFA13C14202782B /* Pods-Fortnite DropperTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Fortnite DropperTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AaronTreinish.Fortnite-DropperTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fortnite Dropper.app/Fortnite Dropper";
+			};
+			name = Release;
+		};
+		2183EC3820FE2BB2002203D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D52D742FE6BB99EC47ED4F84 /* Pods-Fortnite DropperUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Fortnite DropperUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AaronTreinish.Fortnite-DropperUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Fortnite Dropper";
+			};
+			name = Debug;
+		};
+		2183EC3920FE2BB2002203D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC6F230FA7CD0D15CF0310DE /* Pods-Fortnite DropperUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Fortnite DropperUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AaronTreinish.Fortnite-DropperUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Fortnite Dropper";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2183EC0420FE2BA6002203D3 /* Build configuration list for PBXProject "Fortnite Dropper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2183EC2F20FE2BB2002203D3 /* Debug */,
+				2183EC3020FE2BB2002203D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2183EC3120FE2BB2002203D3 /* Build configuration list for PBXNativeTarget "Fortnite Dropper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2183EC3220FE2BB2002203D3 /* Debug */,
+				2183EC3320FE2BB2002203D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2183EC3420FE2BB2002203D3 /* Build configuration list for PBXNativeTarget "Fortnite DropperTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2183EC3520FE2BB2002203D3 /* Debug */,
+				2183EC3620FE2BB2002203D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2183EC3720FE2BB2002203D3 /* Build configuration list for PBXNativeTarget "Fortnite DropperUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2183EC3820FE2BB2002203D3 /* Debug */,
+				2183EC3920FE2BB2002203D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2183EC0120FE2BA6002203D3 /* Project object */;
+}
