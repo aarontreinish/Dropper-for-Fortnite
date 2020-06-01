@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment version="4096" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <deployment version="4352" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,7 +13,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Dropper for Fortnite-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Fortnite_Dropper" customModuleProvider="target" sceneMemberID="viewController">
@@ -33,17 +31,6 @@
                                     <constraint firstAttribute="width" constant="165" id="u2V-mX-O0R"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fortnite dropper logo (2)" translatesAutoresizingMaskIntoConstraints="NO" id="unQ-kY-Odp">
-                                <rect key="frame" x="-116" y="0.0" width="607" height="321"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="672" id="U5d-gP-QL0">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="607"/>
-                                    </constraint>
-                                    <constraint firstAttribute="height" constant="359" id="Wuv-Ac-rXR">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="321"/>
-                                    </constraint>
-                                </constraints>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="purepng.com-fortnite-supply-llamafortnitesupply-llamagame-11531047075hxfrn-1" translatesAutoresizingMaskIntoConstraints="NO" id="6TH-yZ-dcl">
                                 <rect key="frame" x="0.0" y="491" width="165" height="128"/>
                                 <constraints>
@@ -58,7 +45,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GfO-Ln-QAU">
-                                            <rect key="frame" x="3" y="285" width="369" height="49"/>
+                                            <rect key="frame" x="3" y="309" width="369" height="49"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="369" id="2Pf-ad-RtM"/>
                                                 <constraint firstAttribute="height" constant="49" id="IpZ-r4-TsL"/>
@@ -74,6 +61,7 @@
                                             <rect key="frame" x="3" y="409" width="369" height="49"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="369" id="0en-uy-OvA"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="49" id="ZzH-BT-eue"/>
                                                 <constraint firstAttribute="height" constant="49" id="q7m-5N-7RU"/>
                                             </constraints>
                                             <state key="normal" image="Fortnite challenge button (1)">
@@ -84,7 +72,10 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gVh-1Y-sAR">
-                                            <rect key="frame" x="156" y="541" width="62" height="48"/>
+                                            <rect key="frame" x="156.5" y="493" width="62" height="96"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="62" id="eGm-W6-cFh"/>
+                                            </constraints>
                                             <state key="normal" image="star-48"/>
                                             <connections>
                                                 <action selector="rateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P80-QN-MoA"/>
@@ -94,10 +85,7 @@
                                             <rect key="frame" x="0.0" y="627" width="375" height="40"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="375" id="ZBi-fu-lKY"/>
-                                                <constraint firstAttribute="height" constant="40" id="fXk-MV-sML"/>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="pgG-lN-cUk"/>
-                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="375" id="zAz-6A-HMQ"/>
+                                                <constraint firstAttribute="height" constant="40" id="1YJ-a5-fet"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -105,34 +93,43 @@
                                         <constraint firstAttribute="bottom" secondItem="wx0-LS-z3F" secondAttribute="bottom" constant="267" id="5ip-pH-SRi">
                                             <variation key="heightClass=regular-widthClass=compact" constant="209"/>
                                         </constraint>
-                                        <constraint firstAttribute="trailing" secondItem="K2T-NX-yEL" secondAttribute="trailing" id="6nA-bz-oKQ"/>
-                                        <constraint firstAttribute="bottom" secondItem="K2T-NX-yEL" secondAttribute="bottom" id="JHI-cC-fhc"/>
+                                        <constraint firstItem="K2T-NX-yEL" firstAttribute="leading" secondItem="Bdh-cD-QNU" secondAttribute="leading" id="IWd-q9-NTD"/>
                                         <constraint firstItem="GfO-Ln-QAU" firstAttribute="leading" secondItem="Bdh-cD-QNU" secondAttribute="leading" constant="3" id="KD5-c0-bVs"/>
                                         <constraint firstAttribute="trailing" secondItem="wx0-LS-z3F" secondAttribute="trailing" constant="3" id="Lxj-uq-7f0"/>
-                                        <constraint firstItem="gVh-1Y-sAR" firstAttribute="centerX" secondItem="Bdh-cD-QNU" secondAttribute="centerX" id="N1c-Xb-ykA"/>
+                                        <constraint firstItem="K2T-NX-yEL" firstAttribute="top" secondItem="gVh-1Y-sAR" secondAttribute="bottom" constant="38" id="Nne-Pz-ABL"/>
                                         <constraint firstAttribute="trailing" secondItem="GfO-Ln-QAU" secondAttribute="trailing" constant="3" id="P3W-tC-Iwv"/>
-                                        <constraint firstItem="gVh-1Y-sAR" firstAttribute="leading" secondItem="Bdh-cD-QNU" secondAttribute="leading" constant="156" id="WJm-pA-OL4"/>
+                                        <constraint firstAttribute="bottom" secondItem="K2T-NX-yEL" secondAttribute="bottom" id="Q7a-Uf-q6b"/>
                                         <constraint firstItem="wx0-LS-z3F" firstAttribute="leading" secondItem="Bdh-cD-QNU" secondAttribute="leading" constant="3" id="WnQ-fG-Hy7"/>
+                                        <constraint firstAttribute="trailing" secondItem="K2T-NX-yEL" secondAttribute="trailing" id="Yve-Na-cYD"/>
                                         <constraint firstItem="GfO-Ln-QAU" firstAttribute="top" secondItem="Bdh-cD-QNU" secondAttribute="top" constant="317" id="ayd-jh-lfa">
-                                            <variation key="heightClass=regular-widthClass=compact" constant="285"/>
+                                            <variation key="heightClass=regular-widthClass=compact" constant="309"/>
                                         </constraint>
-                                        <constraint firstAttribute="trailing" secondItem="gVh-1Y-sAR" secondAttribute="trailing" constant="157" id="gzw-yS-Hnk"/>
                                         <constraint firstAttribute="bottom" secondItem="wx0-LS-z3F" secondAttribute="bottom" constant="267" id="ibS-GW-H1B">
                                             <variation key="heightClass=regular-widthClass=compact" constant="209"/>
                                         </constraint>
                                         <constraint firstItem="wx0-LS-z3F" firstAttribute="top" secondItem="GfO-Ln-QAU" secondAttribute="bottom" constant="130" id="rA8-Yd-daZ">
-                                            <variation key="heightClass=regular-widthClass=compact" constant="75"/>
+                                            <variation key="heightClass=regular-widthClass=compact" constant="51"/>
                                         </constraint>
-                                        <constraint firstAttribute="bottom" secondItem="gVh-1Y-sAR" secondAttribute="bottom" constant="78" id="ucX-XQ-WAb"/>
-                                        <constraint firstItem="K2T-NX-yEL" firstAttribute="leading" secondItem="Bdh-cD-QNU" secondAttribute="leading" id="xcQ-LU-oBv"/>
+                                        <constraint firstItem="gVh-1Y-sAR" firstAttribute="centerX" secondItem="K2T-NX-yEL" secondAttribute="centerX" id="stM-eV-rh5"/>
                                     </constraints>
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fortnite dropper logo (2)" translatesAutoresizingMaskIntoConstraints="NO" id="unQ-kY-Odp">
+                                <rect key="frame" x="-106" y="20" width="607" height="285"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="672" id="U5d-gP-QL0">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="607"/>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="359" id="Wuv-Ac-rXR">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="285"/>
+                                    </constraint>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="unQ-kY-Odp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="0.5" id="8eF-Ea-cdG"/>
+                            <constraint firstItem="unQ-kY-Odp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="10" id="8eF-Ea-cdG"/>
                             <constraint firstItem="MLK-IC-JeS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="BdS-5Q-eRm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="MLK-IC-JeS" secondAttribute="bottom" constant="48" id="HX9-jj-Acp"/>
                             <constraint firstItem="eNT-zV-H4b" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="JFC-xY-u8d"/>
@@ -140,11 +137,11 @@
                             <constraint firstAttribute="bottom" secondItem="eNT-zV-H4b" secondAttribute="bottom" id="KCL-O7-bLf"/>
                             <constraint firstItem="eNT-zV-H4b" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="LiJ-dZ-arM"/>
                             <constraint firstItem="unQ-kY-Odp" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="MvD-bh-WoM">
-                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="20"/>
                             </constraint>
                             <constraint firstItem="MLK-IC-JeS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Oxj-sr-8Ms"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="6TH-yZ-dcl" secondAttribute="bottom" constant="48" id="YgZ-AL-7dc"/>
-                            <constraint firstItem="unQ-kY-Odp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="0.5" id="dOl-gE-xWC"/>
+                            <constraint firstItem="unQ-kY-Odp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="10" id="dOl-gE-xWC"/>
                             <constraint firstItem="u2o-p9-gki" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ii1-7B-Bwg"/>
                             <constraint firstAttribute="bottom" secondItem="u2o-p9-gki" secondAttribute="bottom" id="jEY-2A-pDt"/>
                             <constraint firstItem="u2o-p9-gki" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="non-cR-yvl"/>
@@ -154,7 +151,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="qEQ-cw-gKo"/>
+                    <navigationItem key="navigationItem" title="Dropper for Fortnite" largeTitleDisplayMode="always" id="qEQ-cw-gKo">
+                        <barButtonItem key="rightBarButtonItem" title="Stats" id="ijT-4V-btw"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="bannerView" destination="K2T-NX-yEL" id="xXf-s6-aQp"/>
                         <outlet property="challengeLabel" destination="oKk-yb-guh" id="C6h-am-Eji"/>
@@ -216,7 +215,7 @@
                     <viewLayoutGuide key="safeArea" id="HqT-mB-d1h"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="3012" y="32.833583208395808"/>
+            <point key="canvasLocation" x="3951.1999999999998" y="32.833583208395808"/>
         </scene>
     </scenes>
     <resources>

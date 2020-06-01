@@ -10,7 +10,7 @@ import UIKit
 import GoogleMobileAds
 import AVFoundation
 
-class ViewController: UIViewController, GADBannerViewDelegate {
+class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDelegate {
     
     @IBOutlet weak var bannerView: GADBannerView!
     
@@ -31,15 +31,26 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet weak var whatChallenge: UIButton!
     
     
-    var fortniteLocations = ["Junk Junction", "Haunted Hills", "Pleasant Park", "Snobby Shores", "Soccer Field", "Viking Village", "Flush Factory", "The Factoy", "Big Chair", "Shifty Shafts", "Tilted Towers", "Loot Lake", "Lazy Links", "Dusty Divot", "Salty Springs", "Fatal Fields", "Lucky Landing", "Paradise Palms", "Retail Row", "Shipment Yard", "Tomato Temple", " Risky Reels", "Wailing Woods", "Lonely Lodge", "Race Track", "Super Villain Base", "Giant Lama"]
+    var fortniteLocations = ["Sweaty Sands", "Holly Hedges", "Pleasant Park", "Salty Springs", "Weeping Woods", "Slurpy Swamp", "Craggy Cliffs", "Frenzy Farm", "Lazy Lake", "Misty Meadows", "Steamy Stacks", "Dirty Docks", "Retail Row", "Risky Reels", "Hayman", "Camp Cod", "Shanty Town", "Pristine Point", "Hydro 16", "E.G.O. Barracks", "Gorgeous Gorge", "Flopper Pond", "FN Radio Location", "Mowdown", "The Orchard", "Lake Canoe", "Hilltop House", "Lazy Lake Island", "E.G.O. Staging Post", "Rainbow Rentals", "E.G.O. Hangar", "Mount F8", "Crash Site", "Base Camp Hotel", "Shipwreck Cove", "Fort Crumpet", "Coral Cove", "Homely Hills", "Lockies Lighthouse", "E.G.O Science Station", "Weather Station", "E.G.O. Comm Tower", "Eye Land"]
     
-    var fortniteChallenges = ["0 Kill Win Challenge", "No Meds Challenge", "One Gun Only Challenge", "Impulse Only Challenge", "Grenade Only Challenge", "C4 Only Challenge", "Traps Only Challenge", "Sniper Only Challenge", "Pistol Only Challenge", "Hand Cannon Only Challenge", "One Chest Only Challenge", "Hunting Rifle Only Challenge", "No Reload Challenge", "Minigun Only Challenge", "No Gun Challenge", "No Building Challenge", "SMG Only Challenge", "Silenced Guns Only Challenge", "Floor is Lava Challenge", "Apples Only Challenge", "Mushrooms Only Challenge", "Rainbow Gun Challenge", "Pickaxe Only Challenge", "Shotgun Only Challenge", "Stink Bomb Only Challenge", "Clingers Only Challenge", "Vending Machines Only Challenge", "Rocket Launcher Only Challenge", "Grenade Launcher Only Challenge", "Revolver Only Challenge", "Gray Guns Only Challenge", "Pick up Enemy's Loadout Challenge"]
+    var fortniteChallenges = ["0 Kill Win Challenge", "No Meds Challenge", "One Gun Only Challenge", "Traps Only Challenge", "Sniper Only Challenge", "Pistol Only Challenge", "One Chest Only Challenge", "No Reload Challenge", "No Gun Challenge", "No Building Challenge", "SMG Only Challenge", "Silenced Guns Only Challenge", "Floor is Lava Challenge", "Apples Only Challenge", "Mushrooms Only Challenge", "Rainbow Gun Challenge", "Pickaxe Only Challenge", "Shotgun Only Challenge", "Stink Bomb Only Challenge", "Clingers Only Challenge", "Vending Machines Only Challenge", "Rocket Launcher Only Challenge", "Grenade Launcher Only Challenge", "Gray Guns Only Challenge", "Pick up Enemy's Loadout Challenge"]
     
     var effect: UIVisualEffect!
-
     
-    var audioPlayer = AVAudioPlayer()
+    var isDarkMode: Bool {
+        if #available(iOS 13.0, *) {
+            return self.traitCollection.userInterfaceStyle == .dark
+        }
+        else {
+            return false
+        }
+    }
     
+    
+//    var audioPlayer = AVAudioPlayer()
+    var interstitial: GADInterstitial!
+    var numberOfTapsLocation = 0
+    var numberOfTapsChallenge = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,20 +62,44 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         locationView.layer.cornerRadius = 10
         challengeView.layer.cornerRadius = 10
         
+        
+        if isDarkMode {
+            locationLabel.textColor = .black
+            challengeLabel.textColor = .black
+        }
+        
+        
+//        do {
+//            audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Hang Glider Sound", ofType: "mp3")!))
+//            audioPlayer.prepareToPlay()
+//        }
+//        catch {
+//            print(error)
+//        }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
         self.bannerView.adUnitID = "ca-app-pub-7930281625187952/3947297105"
         self.bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
         
-        
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Hang Glider Sound", ofType: "mp3")!))
-            audioPlayer.prepareToPlay()
-        }
-        catch {
-            print(error)
-        }
-        
+        interstitial = createAndLoadInterstitial()
+    }
+    
+    func createAndLoadInterstitial() -> GADInterstitial {
+        let interstitial = GADInterstitial(adUnitID: "ca-app-pub-7930281625187952/8747006959")
+        interstitial.delegate = self
+        interstitial.load(GADRequest())
+        return interstitial
+    }
+    
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        interstitial = createAndLoadInterstitial()
     }
     
     func animateIn() {
@@ -74,7 +109,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         locationView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
         locationView.alpha = 0
         
-        audioPlayer.play()
+//        audioPlayer.play()
         
         UIView.animate(withDuration: 0.4) {
             self.visualEffectView.effect = self.effect
@@ -86,14 +121,14 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         dropLocation.isEnabled = false
     }
     
-  
+    
     
     
     func animateOut() {
         UIView.animate(withDuration: 0.3, animations: {
             self.locationView.transform = CGAffineTransform.init(scaleX: 1.3, y:1.3)
             self.locationView.alpha = 0
-        
+            
             self.visualEffectView.effect = nil
             
             
@@ -101,8 +136,8 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         }) { (successBool) in
             self.locationView.removeFromSuperview()
         }
-        audioPlayer.stop()
-        audioPlayer.currentTime = 0
+//        audioPlayer.stop()
+//        audioPlayer.currentTime = 0
         
         whatChallenge.isEnabled = true
         dropLocation.isEnabled = true
@@ -116,7 +151,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         challengeView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
         challengeView.alpha = 0
         
-        audioPlayer.play()
+//        audioPlayer.play()
         
         UIView.animate(withDuration: 0.4) {
             self.visualEffectView.effect = self.effect
@@ -138,24 +173,37 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         }) { (successBool) in
             self.challengeView.removeFromSuperview()
         }
-
-       audioPlayer.stop()
-       audioPlayer.currentTime = 0
         
-       dropLocation.isEnabled = true
-       whatChallenge.isEnabled = true
+//        audioPlayer.stop()
+//        audioPlayer.currentTime = 0
+        
+        dropLocation.isEnabled = true
+        whatChallenge.isEnabled = true
         
     }
     
     
     @IBAction func dropLocation(_ sender: UIButton) {
         animateIn()
-        fortniteLocations = ["Junk Junction", "Haunted Hills", "Pleasant Park", "Snobby Shores", "Soccer Field", "Viking Village", "Flush Factory", "The Factoy", "Big Chair", "Shifty Shafts", "Tilted Towers", "Loot Lake", "Lazy Links", "Dusty Divot", "Salty Springs", "Fatal Fields", "Lucky Landing", "Paradise Palms", "Retail Row", "Shipment Yard", "Tomato Temple", " Risky Reels", "Wailing Woods", "Lonely Lodge", "Race Track", "Super Villain Base", "Giant Lama"]
+        fortniteLocations = ["Sweaty Sands", "Holly Hedges", "Pleasant Park", "Salty Springs", "Weeping Woods", "Slurpy Swamp", "Craggy Cliffs", "Frenzy Farm", "Lazy Lake", "Misty Meadows", "Steamy Stacks", "Dirty Docks", "Retail Row", "Risky Reels", "Hayman", "Camp Cod", "Shanty Town", "Pristine Point", "Hydro 16", "E.G.O. Barracks", "Gorgeous Gorge", "Flopper Pond", "FN Radio Location", "Mowdown", "The Orchard", "Lake Canoe", "Hilltop House", "Lazy Lake Island", "E.G.O. Staging Post", "Rainbow Rentals", "E.G.O. Hangar", "Mount F8", "Crash Site", "Base Camp Hotel", "Shipwreck Cove", "Fort Crumpet", "Coral Cove", "Homely Hills", "Lockies Lighthouse", "E.G.O Science Station", "Weather Station", "E.G.O. Comm Tower", "Eye Land"]
         
         let index = Int(arc4random_uniform(UInt32(fortniteLocations.count)))
         
         locationLabel.text = fortniteLocations[index]
-    
+        
+        numberOfTapsLocation += 1
+        print(numberOfTapsLocation)
+        
+        
+        if numberOfTapsLocation == 5 {
+            if interstitial.isReady {
+                interstitial.present(fromRootViewController: self)
+                numberOfTapsLocation = 0
+            } else {
+                print("Ad wasn't ready")
+                numberOfTapsLocation = 0
+            }
+        }
         
     }
     
@@ -167,11 +215,26 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     
     @IBAction func whatChallenge(_ sender: UIButton) {
         animateInChallenge()
-        fortniteChallenges = ["0 Kill Win Challenge", "No Meds Challenge", "One Gun Only Challenge", "Impulse Only Challenge", "Grenade Only Challenge", "C4 Only Challenge", "Traps Only Challenge", "Sniper Only Challenge", "Pistol Only Challenge", "Hand Cannon Only Challenge", "One Chest Only Challenge", "Hunting Rifle Only Challenge", "No Reload Challenge", "Minigun Only Challenge", "No Gun Challenge", "No Building Challenge", "SMG Only Challenge", "Silenced Guns Only Challenge", "Floor is Lava Challenge", "Apples Only Challenge", "Mushrooms Only Challenge", "Rainbow Gun Challenge", "Pickaxe Only Challenge", "Shotgun Only Challenge", "Stink Bomb Only Challenge", "Clingers Only Challenge", "Vending Machines Only Challenge", "Rocket Launcher Only Challenge", "Grenade Launcher Only Challenge", "Revolver Only Challenge", "Gray Guns Only Challenge", "Pick up Enemy's Loadout Challenge"]
+        fortniteChallenges = ["0 Kill Win Challenge", "No Meds Challenge", "One Gun Only Challenge", "Traps Only Challenge", "Sniper Only Challenge", "Pistol Only Challenge", "One Chest Only Challenge", "No Reload Challenge", "No Gun Challenge", "No Building Challenge", "SMG Only Challenge", "Silenced Guns Only Challenge", "Floor is Lava Challenge", "Apples Only Challenge", "Mushrooms Only Challenge", "Rainbow Gun Challenge", "Pickaxe Only Challenge", "Shotgun Only Challenge", "Stink Bomb Only Challenge", "Clingers Only Challenge", "Vending Machines Only Challenge", "Rocket Launcher Only Challenge", "Grenade Launcher Only Challenge", "Gray Guns Only Challenge", "Pick up Enemy's Loadout Challenge"]
         
         let index = Int(arc4random_uniform(UInt32(fortniteChallenges.count)))
         
         challengeLabel.text = fortniteChallenges[index]
+        
+        numberOfTapsChallenge += 1
+        print(numberOfTapsChallenge)
+        
+        
+        if numberOfTapsChallenge == 5 {
+            if interstitial.isReady {
+                interstitial.present(fromRootViewController: self)
+                numberOfTapsChallenge = 0
+            } else {
+                print("Ad wasn't ready")
+                numberOfTapsChallenge = 0
+            }
+        }
+        
         
     }
     

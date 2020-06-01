@@ -7,6 +7,8 @@ target 'Fortnite Dropper' do
 
   # Pods for Fortnite Dropper
 	pod 'Google-Mobile-Ads-SDK'
+pod 'Fabric'
+pod 'Crashlytics'
 
   target 'Fortnite DropperTests' do
     inherit! :search_paths
