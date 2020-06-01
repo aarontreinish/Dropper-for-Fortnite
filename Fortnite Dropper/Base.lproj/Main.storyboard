@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment version="4352" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,61 +18,60 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Fortnite_Dropper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stock-photo-high-resolution-background-with-a-geometric-pattern-inspired-in-a-video-game-1129898345" translatesAutoresizingMaskIntoConstraints="NO" id="eNT-zV-H4b">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Fliped purepng.com-fortnite-supply-llamafortnitesupply-llamagame-11531047075hxfrn" translatesAutoresizingMaskIntoConstraints="NO" id="MLK-IC-JeS">
-                                <rect key="frame" x="210" y="491" width="165" height="128"/>
+                                <rect key="frame" x="249" y="686" width="165" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="1i6-rF-d6w"/>
                                     <constraint firstAttribute="width" constant="165" id="u2V-mX-O0R"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="purepng.com-fortnite-supply-llamafortnitesupply-llamagame-11531047075hxfrn-1" translatesAutoresizingMaskIntoConstraints="NO" id="6TH-yZ-dcl">
-                                <rect key="frame" x="0.0" y="491" width="165" height="128"/>
+                                <rect key="frame" x="0.0" y="686" width="165" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="7b7-cv-5Hq"/>
                                     <constraint firstAttribute="width" constant="165" id="jdy-sT-53X"/>
                                 </constraints>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2o-p9-gki">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Bdh-cD-QNU">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GfO-Ln-QAU">
-                                            <rect key="frame" x="3" y="309" width="369" height="49"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="105" translatesAutoresizingMaskIntoConstraints="NO" id="tWe-dg-mpe">
+                                            <rect key="frame" x="12" y="346.66666666666669" width="390" height="203.00000000000006"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GfO-Ln-QAU">
+                                                    <rect key="frame" x="0.0" y="0.0" width="390" height="49"/>
+                                                    <state key="normal" image="Fortnite Dropper button">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="dropLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6pI-Wq-9C9"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wx0-LS-z3F">
+                                                    <rect key="frame" x="0.0" y="154" width="390" height="49"/>
+                                                    <state key="normal" image="Fortnite challenge button (1)">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="whatChallenge:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zGv-gd-RrR"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="369" id="2Pf-ad-RtM"/>
-                                                <constraint firstAttribute="height" constant="49" id="IpZ-r4-TsL"/>
+                                                <constraint firstAttribute="height" constant="203" id="wbk-jB-sk0"/>
                                             </constraints>
-                                            <state key="normal" image="Fortnite Dropper button">
-                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="dropLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6pI-Wq-9C9"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wx0-LS-z3F">
-                                            <rect key="frame" x="3" y="409" width="369" height="49"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="369" id="0en-uy-OvA"/>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="49" id="ZzH-BT-eue"/>
-                                                <constraint firstAttribute="height" constant="49" id="q7m-5N-7RU"/>
-                                            </constraints>
-                                            <state key="normal" image="Fortnite challenge button (1)">
-                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="whatChallenge:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zGv-gd-RrR"/>
-                                            </connections>
-                                        </button>
+                                        </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gVh-1Y-sAR">
-                                            <rect key="frame" x="156.5" y="493" width="62" height="96"/>
+                                            <rect key="frame" x="176" y="770" width="62" height="48"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="62" id="eGm-W6-cFh"/>
                                             </constraints>
@@ -82,66 +81,46 @@
                                             </connections>
                                         </button>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K2T-NX-yEL" customClass="GADBannerView">
-                                            <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                                            <rect key="frame" x="0.0" y="856" width="414" height="40"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="1YJ-a5-fet"/>
                                             </constraints>
                                         </view>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fortnite dropper logo (2)" translatesAutoresizingMaskIntoConstraints="NO" id="unQ-kY-Odp">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="293"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="293" id="56K-W6-a97"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="wx0-LS-z3F" secondAttribute="bottom" constant="267" id="5ip-pH-SRi">
-                                            <variation key="heightClass=regular-widthClass=compact" constant="209"/>
-                                        </constraint>
+                                        <constraint firstItem="unQ-kY-Odp" firstAttribute="leading" secondItem="Bdh-cD-QNU" secondAttribute="leading" id="8u4-4w-dRa"/>
                                         <constraint firstItem="K2T-NX-yEL" firstAttribute="leading" secondItem="Bdh-cD-QNU" secondAttribute="leading" id="IWd-q9-NTD"/>
-                                        <constraint firstItem="GfO-Ln-QAU" firstAttribute="leading" secondItem="Bdh-cD-QNU" secondAttribute="leading" constant="3" id="KD5-c0-bVs"/>
-                                        <constraint firstAttribute="trailing" secondItem="wx0-LS-z3F" secondAttribute="trailing" constant="3" id="Lxj-uq-7f0"/>
+                                        <constraint firstItem="tWe-dg-mpe" firstAttribute="centerY" secondItem="Bdh-cD-QNU" secondAttribute="centerY" id="Kdq-Dn-5lf"/>
                                         <constraint firstItem="K2T-NX-yEL" firstAttribute="top" secondItem="gVh-1Y-sAR" secondAttribute="bottom" constant="38" id="Nne-Pz-ABL"/>
-                                        <constraint firstAttribute="trailing" secondItem="GfO-Ln-QAU" secondAttribute="trailing" constant="3" id="P3W-tC-Iwv"/>
+                                        <constraint firstAttribute="trailing" secondItem="unQ-kY-Odp" secondAttribute="trailing" id="PDE-0o-9BU"/>
                                         <constraint firstAttribute="bottom" secondItem="K2T-NX-yEL" secondAttribute="bottom" id="Q7a-Uf-q6b"/>
-                                        <constraint firstItem="wx0-LS-z3F" firstAttribute="leading" secondItem="Bdh-cD-QNU" secondAttribute="leading" constant="3" id="WnQ-fG-Hy7"/>
+                                        <constraint firstAttribute="trailing" secondItem="tWe-dg-mpe" secondAttribute="trailing" constant="12" id="WWL-Hi-mBu"/>
                                         <constraint firstAttribute="trailing" secondItem="K2T-NX-yEL" secondAttribute="trailing" id="Yve-Na-cYD"/>
-                                        <constraint firstItem="GfO-Ln-QAU" firstAttribute="top" secondItem="Bdh-cD-QNU" secondAttribute="top" constant="317" id="ayd-jh-lfa">
-                                            <variation key="heightClass=regular-widthClass=compact" constant="309"/>
-                                        </constraint>
-                                        <constraint firstAttribute="bottom" secondItem="wx0-LS-z3F" secondAttribute="bottom" constant="267" id="ibS-GW-H1B">
-                                            <variation key="heightClass=regular-widthClass=compact" constant="209"/>
-                                        </constraint>
-                                        <constraint firstItem="wx0-LS-z3F" firstAttribute="top" secondItem="GfO-Ln-QAU" secondAttribute="bottom" constant="130" id="rA8-Yd-daZ">
-                                            <variation key="heightClass=regular-widthClass=compact" constant="51"/>
-                                        </constraint>
                                         <constraint firstItem="gVh-1Y-sAR" firstAttribute="centerX" secondItem="K2T-NX-yEL" secondAttribute="centerX" id="stM-eV-rh5"/>
+                                        <constraint firstItem="tWe-dg-mpe" firstAttribute="leading" secondItem="Bdh-cD-QNU" secondAttribute="leading" constant="12" id="vsf-NW-hB0"/>
+                                        <constraint firstItem="unQ-kY-Odp" firstAttribute="top" secondItem="Bdh-cD-QNU" secondAttribute="top" id="ybU-HF-3zp"/>
                                     </constraints>
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fortnite dropper logo (2)" translatesAutoresizingMaskIntoConstraints="NO" id="unQ-kY-Odp">
-                                <rect key="frame" x="-106" y="20" width="607" height="285"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="672" id="U5d-gP-QL0">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="607"/>
-                                    </constraint>
-                                    <constraint firstAttribute="height" constant="359" id="Wuv-Ac-rXR">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="285"/>
-                                    </constraint>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="unQ-kY-Odp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="10" id="8eF-Ea-cdG"/>
                             <constraint firstItem="MLK-IC-JeS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="BdS-5Q-eRm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="MLK-IC-JeS" secondAttribute="bottom" constant="48" id="HX9-jj-Acp"/>
                             <constraint firstItem="eNT-zV-H4b" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="JFC-xY-u8d"/>
                             <constraint firstItem="6TH-yZ-dcl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="JLc-bV-3sY"/>
                             <constraint firstAttribute="bottom" secondItem="eNT-zV-H4b" secondAttribute="bottom" id="KCL-O7-bLf"/>
                             <constraint firstItem="eNT-zV-H4b" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="LiJ-dZ-arM"/>
-                            <constraint firstItem="unQ-kY-Odp" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="MvD-bh-WoM">
-                                <variation key="heightClass=regular-widthClass=compact" constant="20"/>
-                            </constraint>
                             <constraint firstItem="MLK-IC-JeS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Oxj-sr-8Ms"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="6TH-yZ-dcl" secondAttribute="bottom" constant="48" id="YgZ-AL-7dc"/>
-                            <constraint firstItem="unQ-kY-Odp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="10" id="dOl-gE-xWC"/>
                             <constraint firstItem="u2o-p9-gki" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ii1-7B-Bwg"/>
                             <constraint firstAttribute="bottom" secondItem="u2o-p9-gki" secondAttribute="bottom" id="jEY-2A-pDt"/>
                             <constraint firstItem="u2o-p9-gki" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="non-cR-yvl"/>
@@ -215,7 +194,7 @@
                     <viewLayoutGuide key="safeArea" id="HqT-mB-d1h"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="3951.1999999999998" y="32.833583208395808"/>
+            <point key="canvasLocation" x="3950.7246376811599" y="32.8125"/>
         </scene>
     </scenes>
     <resources>

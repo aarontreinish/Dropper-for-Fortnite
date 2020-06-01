@@ -31,9 +31,9 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     @IBOutlet weak var whatChallenge: UIButton!
     
     
-    var fortniteLocations = ["Sweaty Sands", "Holly Hedges", "Pleasant Park", "Salty Springs", "Weeping Woods", "Slurpy Swamp", "Craggy Cliffs", "Frenzy Farm", "Lazy Lake", "Misty Meadows", "Steamy Stacks", "Dirty Docks", "Retail Row", "Risky Reels", "Hayman", "Camp Cod", "Shanty Town", "Pristine Point", "Hydro 16", "E.G.O. Barracks", "Gorgeous Gorge", "Flopper Pond", "FN Radio Location", "Mowdown", "The Orchard", "Lake Canoe", "Hilltop House", "Lazy Lake Island", "E.G.O. Staging Post", "Rainbow Rentals", "E.G.O. Hangar", "Mount F8", "Crash Site", "Base Camp Hotel", "Shipwreck Cove", "Fort Crumpet", "Coral Cove", "Homely Hills", "Lockies Lighthouse", "E.G.O Science Station", "Weather Station", "E.G.O. Comm Tower", "Eye Land"]
+    var fortniteLocations = ["The Yacht", "The Shark", "The Agency", "The Grotto", "The Rig",  "Sweaty Sands", "Holly Hedges", "Pleasant Park", "Salty Springs", "Weeping Woods", "Slurpy Swamp", "Craggy Cliffs", "Frenzy Farm", "Lazy Lake", "Misty Meadows", "Steamy Stacks", "Dirty Docks", "Retail Row", "Risky Reels", "Hayman", "Camp Cod", "Shanty Town", "Pristine Point", "Hydro 16", "E.G.O. Barracks", "Gorgeous Gorge", "Flopper Pond", "FN Radio Location", "Mowdown", "The Orchard", "Lake Canoe", "Hilltop House", "Lazy Lake Island", "E.G.O. Staging Post", "Rainbow Rentals", "E.G.O. Hangar", "Mount F8", "Crash Site", "Base Camp Hotel", "Shipwreck Cove", "Fort Crumpet", "Coral Cove", "Homely Hills", "Lockies Lighthouse", "E.G.O Science Station", "Weather Station", "E.G.O. Comm Tower", "Eye Land"]
     
-    var fortniteChallenges = ["0 Kill Win Challenge", "No Meds Challenge", "One Gun Only Challenge", "Traps Only Challenge", "Sniper Only Challenge", "Pistol Only Challenge", "One Chest Only Challenge", "No Reload Challenge", "No Gun Challenge", "No Building Challenge", "SMG Only Challenge", "Silenced Guns Only Challenge", "Floor is Lava Challenge", "Apples Only Challenge", "Mushrooms Only Challenge", "Rainbow Gun Challenge", "Pickaxe Only Challenge", "Shotgun Only Challenge", "Stink Bomb Only Challenge", "Clingers Only Challenge", "Vending Machines Only Challenge", "Rocket Launcher Only Challenge", "Grenade Launcher Only Challenge", "Gray Guns Only Challenge", "Pick up Enemy's Loadout Challenge"]
+    var fortniteChallenges = ["0 Kill Win Challenge", "No Meds Challenge", "One Gun Only Challenge", "Sniper Only Challenge", "Pistol Only Challenge", "One Chest Only Challenge", "No Reload Challenge", "No Gun Challenge", "No Building Challenge", "SMG Only Challenge", "Silenced Guns Only Challenge", "Floor is Lava Challenge", "Rainbow Gun Challenge", "Pickaxe Only Challenge", "Shotgun Only Challenge", "Rocket Launcher Only Challenge", "Gray Guns Only Challenge", "Pick up Enemy's Loadout Challenge"]
     
     var effect: UIVisualEffect!
     
@@ -185,11 +185,11 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     
     @IBAction func dropLocation(_ sender: UIButton) {
         animateIn()
-        fortniteLocations = ["Sweaty Sands", "Holly Hedges", "Pleasant Park", "Salty Springs", "Weeping Woods", "Slurpy Swamp", "Craggy Cliffs", "Frenzy Farm", "Lazy Lake", "Misty Meadows", "Steamy Stacks", "Dirty Docks", "Retail Row", "Risky Reels", "Hayman", "Camp Cod", "Shanty Town", "Pristine Point", "Hydro 16", "E.G.O. Barracks", "Gorgeous Gorge", "Flopper Pond", "FN Radio Location", "Mowdown", "The Orchard", "Lake Canoe", "Hilltop House", "Lazy Lake Island", "E.G.O. Staging Post", "Rainbow Rentals", "E.G.O. Hangar", "Mount F8", "Crash Site", "Base Camp Hotel", "Shipwreck Cove", "Fort Crumpet", "Coral Cove", "Homely Hills", "Lockies Lighthouse", "E.G.O Science Station", "Weather Station", "E.G.O. Comm Tower", "Eye Land"]
+        let locations = fortniteLocations
         
-        let index = Int(arc4random_uniform(UInt32(fortniteLocations.count)))
+        let index = Int(arc4random_uniform(UInt32(locations.count)))
         
-        locationLabel.text = fortniteLocations[index]
+        locationLabel.text = locations[index]
         
         numberOfTapsLocation += 1
         print(numberOfTapsLocation)
@@ -215,11 +215,11 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     
     @IBAction func whatChallenge(_ sender: UIButton) {
         animateInChallenge()
-        fortniteChallenges = ["0 Kill Win Challenge", "No Meds Challenge", "One Gun Only Challenge", "Traps Only Challenge", "Sniper Only Challenge", "Pistol Only Challenge", "One Chest Only Challenge", "No Reload Challenge", "No Gun Challenge", "No Building Challenge", "SMG Only Challenge", "Silenced Guns Only Challenge", "Floor is Lava Challenge", "Apples Only Challenge", "Mushrooms Only Challenge", "Rainbow Gun Challenge", "Pickaxe Only Challenge", "Shotgun Only Challenge", "Stink Bomb Only Challenge", "Clingers Only Challenge", "Vending Machines Only Challenge", "Rocket Launcher Only Challenge", "Grenade Launcher Only Challenge", "Gray Guns Only Challenge", "Pick up Enemy's Loadout Challenge"]
+        let challenges = fortniteChallenges
         
-        let index = Int(arc4random_uniform(UInt32(fortniteChallenges.count)))
+        let index = Int(arc4random_uniform(UInt32(challenges.count)))
         
-        challengeLabel.text = fortniteChallenges[index]
+        challengeLabel.text = challenges[index]
         
         numberOfTapsChallenge += 1
         print(numberOfTapsChallenge)
@@ -247,12 +247,6 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     @IBAction func rateButton(_ sender: Any) {
         let appDelegate = AppDelegate()
         appDelegate.requestReview()
-    }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 }
