@@ -23,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Fabric.with([Crashlytics.self])
         
-        GADMobileAds.configure(withApplicationID: "ca-app-pub-7930281625187952~8522651147")
+        //GADMobileAds.configure(withApplicationID: "ca-app-pub-7930281625187952~8522651147")
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         
         return true

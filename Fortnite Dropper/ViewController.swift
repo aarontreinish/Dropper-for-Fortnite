@@ -13,27 +13,18 @@ import AVFoundation
 class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDelegate {
     
     @IBOutlet weak var bannerView: GADBannerView!
-    
     @IBOutlet var locationView: UIView!
-    
     @IBOutlet var challengeView: UIView!
-    
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
-    
     @IBOutlet weak var locationLabel: UILabel!
-    
     @IBOutlet weak var challengeLabel: UILabel!
-    
-    
     @IBOutlet weak var dropLocation: UIButton!
-    
-    
     @IBOutlet weak var whatChallenge: UIButton!
     
     
-    var fortniteLocations = ["The Yacht", "The Shark", "The Agency", "The Grotto", "The Rig",  "Sweaty Sands", "Holly Hedges", "Pleasant Park", "Salty Springs", "Weeping Woods", "Slurpy Swamp", "Craggy Cliffs", "Frenzy Farm", "Lazy Lake", "Misty Meadows", "Steamy Stacks", "Dirty Docks", "Retail Row", "Risky Reels", "Hayman", "Camp Cod", "Shanty Town", "Pristine Point", "Hydro 16", "E.G.O. Barracks", "Gorgeous Gorge", "Flopper Pond", "FN Radio Location", "Mowdown", "The Orchard", "Lake Canoe", "Hilltop House", "Lazy Lake Island", "E.G.O. Staging Post", "Rainbow Rentals", "E.G.O. Hangar", "Mount F8", "Crash Site", "Base Camp Hotel", "Shipwreck Cove", "Fort Crumpet", "Coral Cove", "Homely Hills", "Lockies Lighthouse", "E.G.O Science Station", "Weather Station", "E.G.O. Comm Tower", "Eye Land"]
+    var fortniteLocations = ["Coral Castle", "Sweaty Sands", "Holly Hedges", "The Fortilla", "Pleasant Park", "Salty Springs", "Slurpy Swamp", "Rickety Rig", "Craggy Cliffs", "The Authority", "Misty Meadows", "Frenzy Farm", "Lazy Lake", "Steamy Stacks", "Retail Row", "Catty Corner", "Dirty Docks"]
     
-    var fortniteChallenges = ["Mythic Weapon Only Challenge", "0 Kill Win Challenge", "No Meds Challenge", "One Gun Only Challenge", "Sniper Only Challenge", "Pistol Only Challenge", "One Chest Only Challenge", "No Reload Challenge", "No Gun Challenge", "No Building Challenge", "SMG Only Challenge", "Silenced Guns Only Challenge", "Floor is Lava Challenge", "Rainbow Gun Challenge", "Pickaxe Only Challenge", "Shotgun Only Challenge", "Rocket Launcher Only Challenge", "Gray Guns Only Challenge", "Pick up Enemy's Loadout Challenge"]
+    var fortniteChallenges = ["Mythic Weapon Only Challenge", "0 Kill Win Challenge", "No Meds Challenge", "One Gun Only Challenge", "Sniper Only Challenge", "Pistol Only Challenge", "One Chest Only Challenge", "No Reload Challenge", "No Gun Challenge", "No Building Challenge", "SMG Only Challenge", "Silenced Guns Only Challenge", "Floor is Lava Challenge", "Rainbow Gun Challenge", "Pickaxe Only Challenge", "Shotgun Only Challenge", "Rocket Launcher Only Challenge", "Gray Guns Only Challenge", "Pick up Enemy's Loadout Challenge", "Cars Only Challenge"]
     
     var effect: UIVisualEffect!
     
