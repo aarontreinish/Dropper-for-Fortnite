@@ -21,10 +21,9 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     @IBOutlet weak var dropLocation: UIButton!
     @IBOutlet weak var whatChallenge: UIButton!
     
+    var fortniteLocations = ["Logjam Lumberyard", "Camp Cuddle", "Greasy Grove", "Tilted Towers", "Shifty Shafts", "Sleepy Sound", "Coney Crossroads", "Rocky Reels", "Chonker's Speedway", "Condo Canyon", "The Joneses", "Sanctuary", " The Daily Bugle", "Giant Statue"]
     
-    var fortniteLocations = ["Coral Castle", "Sweaty Sands", "Holly Hedges", "The Fortilla", "Pleasant Park", "Salty Springs", "Slurpy Swamp", "Rickety Rig", "Craggy Cliffs", "The Authority", "Misty Meadows", "Frenzy Farm", "Lazy Lake", "Steamy Stacks", "Retail Row", "Catty Corner", "Dirty Docks"]
-    
-    var fortniteChallenges = ["Mythic Weapon Only Challenge", "0 Kill Win Challenge", "No Meds Challenge", "One Gun Only Challenge", "Sniper Only Challenge", "Pistol Only Challenge", "One Chest Only Challenge", "No Reload Challenge", "No Gun Challenge", "No Building Challenge", "SMG Only Challenge", "Silenced Guns Only Challenge", "Floor is Lava Challenge", "Rainbow Gun Challenge", "Pickaxe Only Challenge", "Shotgun Only Challenge", "Rocket Launcher Only Challenge", "Gray Guns Only Challenge", "Pick up Enemy's Loadout Challenge", "Cars Only Challenge"]
+    var fortniteChallenges = ["Mythic Weapon Only Challenge", "0 Kill Win Challenge", "No Meds Challenge", "One Gun Only Challenge", "Sniper Only Challenge", "Pistol Only Challenge", "One Chest Only Challenge", "No Reload Challenge", "No Gun Challenge", "No Building Challenge", "SMG Only Challenge", "Floor is Lava Challenge", "Rainbow Gun Challenge", "Pickaxe Only Challenge", "Shotgun Only Challenge", "Gray Guns Only Challenge", "Pick up Enemy's Loadout Challenge", "Cars Only Challenge", "Sky Base Challenge"]
     
     var effect: UIVisualEffect!
     
