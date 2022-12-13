@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment version="4352" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -93,8 +93,18 @@
                                                 <constraint firstAttribute="height" constant="293" id="56K-W6-a97"/>
                                             </constraints>
                                         </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7i2-k4-3fS">
+                                            <rect key="frame" x="275.33333333333331" y="50" width="118.66666666666669" height="34.333333333333343"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="gray" title="Remove Ads"/>
+                                            <connections>
+                                                <action selector="removeAdsButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TCh-hx-wqF"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="7i2-k4-3fS" firstAttribute="top" secondItem="Bdh-cD-QNU" secondAttribute="top" constant="50" id="64f-Il-QZK"/>
                                         <constraint firstItem="unQ-kY-Odp" firstAttribute="leading" secondItem="Bdh-cD-QNU" secondAttribute="leading" id="8u4-4w-dRa"/>
                                         <constraint firstItem="K2T-NX-yEL" firstAttribute="leading" secondItem="Bdh-cD-QNU" secondAttribute="leading" id="IWd-q9-NTD"/>
                                         <constraint firstItem="tWe-dg-mpe" firstAttribute="centerY" secondItem="Bdh-cD-QNU" secondAttribute="centerY" id="Kdq-Dn-5lf"/>
@@ -105,12 +115,14 @@
                                         <constraint firstAttribute="trailing" secondItem="K2T-NX-yEL" secondAttribute="trailing" id="Yve-Na-cYD"/>
                                         <constraint firstItem="gVh-1Y-sAR" firstAttribute="centerX" secondItem="K2T-NX-yEL" secondAttribute="centerX" id="stM-eV-rh5"/>
                                         <constraint firstItem="tWe-dg-mpe" firstAttribute="leading" secondItem="Bdh-cD-QNU" secondAttribute="leading" constant="12" id="vsf-NW-hB0"/>
+                                        <constraint firstAttribute="trailing" secondItem="7i2-k4-3fS" secondAttribute="trailing" constant="20" id="y3k-gg-s7X"/>
                                         <constraint firstItem="unQ-kY-Odp" firstAttribute="top" secondItem="Bdh-cD-QNU" secondAttribute="top" id="ybU-HF-3zp"/>
                                     </constraints>
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="MLK-IC-JeS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="BdS-5Q-eRm"/>
@@ -128,7 +140,6 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="MLK-IC-JeS" secondAttribute="bottom" constant="48" id="u5l-MS-87j"/>
                             <constraint firstItem="eNT-zV-H4b" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="uTA-wD-3F1"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Dropper for Fortnite" largeTitleDisplayMode="always" id="qEQ-cw-gKo">
                         <barButtonItem key="rightBarButtonItem" title="Stats" id="ijT-4V-btw"/>
@@ -140,6 +151,7 @@
                         <outlet property="dropLocation" destination="GfO-Ln-QAU" id="e3e-Tw-frE"/>
                         <outlet property="locationLabel" destination="zry-3g-nZ1" id="uaX-tr-Vs1"/>
                         <outlet property="locationView" destination="HFT-kX-Mho" id="ks1-io-Ec2"/>
+                        <outlet property="removeAdsButton" destination="7i2-k4-3fS" id="EGg-jC-tPM"/>
                         <outlet property="visualEffectView" destination="u2o-p9-gki" id="hfd-o1-Cqn"/>
                         <outlet property="whatChallenge" destination="wx0-LS-z3F" id="mqI-8T-hWU"/>
                     </connections>
@@ -156,7 +168,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xVA-z3-ZBe">
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xVA-z3-ZBe">
                             <rect key="frame" x="107" y="113" width="50" height="37"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="BurbankBigCondensed-Black" family="Burbank Big Condensed" pointSize="25"/>
@@ -166,14 +178,14 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <viewLayoutGuide key="safeArea" id="L5h-um-qM3"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" id="HFT-kX-Mho">
                     <rect key="frame" x="0.0" y="0.0" width="265" height="150"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c91-0A-E5B">
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c91-0A-E5B">
                             <rect key="frame" x="107" y="113" width="50" height="37"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="BurbankBigCondensed-Black" family="Burbank Big Condensed" pointSize="25"/>
@@ -190,8 +202,8 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <viewLayoutGuide key="safeArea" id="HqT-mB-d1h"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
             </objects>
             <point key="canvasLocation" x="3950.7246376811599" y="32.8125"/>

@@ -33,11 +33,13 @@ PODS:
   - nanopb/decode (1.30905.0)
   - nanopb/encode (1.30905.0)
   - PromisesObjC (1.2.10)
+  - RevenueCat (4.13.1)
 
 DEPENDENCIES:
   - Crashlytics
   - Fabric
   - Google-Mobile-Ads-SDK
+  - RevenueCat
 
 SPEC REPOS:
   trunk:
@@ -48,6 +50,7 @@ SPEC REPOS:
     - GoogleUtilities
     - nanopb
     - PromisesObjC
+    - RevenueCat
 
 SPEC CHECKSUMS:
   Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
@@ -57,7 +60,8 @@ SPEC CHECKSUMS:
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
+  RevenueCat: f713337182aeda810fe6602f817f0909285cc1d4
 
-PODFILE CHECKSUM: 5c7541604ff0636eda52e527e59cbb5de92f1da4
+PODFILE CHECKSUM: f7be33aa58a20c0ed46e7d5b4771c667ede9ed16
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

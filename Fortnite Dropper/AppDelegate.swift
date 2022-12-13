@@ -9,8 +9,7 @@
 import UIKit
 import StoreKit
 import GoogleMobileAds
-import Fabric
-import Crashlytics
+import RevenueCat
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,11 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        Fabric.with([Crashlytics.self])
-        
         //GADMobileAds.configure(withApplicationID: "ca-app-pub-7930281625187952~8522651147")
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         
+        Purchases.logLevel = .debug
+            Purchases.configure(
+             with: Configuration.Builder(withAPIKey: Constants.apiKey)
+                      .with(appUserID: "<app_user_id>")
+                      .build()
+             )
         
         return true
     }
@@ -64,3 +67,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
+struct Constants {
+    static let apiKey = "appl_pDdFZWzPFpbjaCnegMbhLYUkYvb"
+    
+    static let entitlementID = "dropper_for_fortnite_subscription"
+    
+    static let productID = "com.AaronTreinish.FortniteDropper.removeads"
+}

@@ -9,6 +9,8 @@
 import UIKit
 import GoogleMobileAds
 import AVFoundation
+import RevenueCat
+import SwiftUI
 
 class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDelegate {
     
@@ -20,8 +22,9 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     @IBOutlet weak var challengeLabel: UILabel!
     @IBOutlet weak var dropLocation: UIButton!
     @IBOutlet weak var whatChallenge: UIButton!
+    @IBOutlet weak var removeAdsButton: UIButton!
     
-    var fortniteLocations = ["Logjam Lumberyard", "Camp Cuddle", "Greasy Grove", "Tilted Towers", "Shifty Shafts", "Sleepy Sound", "Coney Crossroads", "Rocky Reels", "Chonker's Speedway", "Condo Canyon", "The Joneses", "Sanctuary", " The Daily Bugle", "Giant Statue"]
+    var fortniteLocations = ["The Citadel", "Anvil Square", "Shattered Slabs", "Frenzy Fields", "Breakwater Bay", "Slappy Shores", "Faulty Splits", "Lonely Labs", "Brutal Bastion", "Take the battle bus to the end", "Drop immediately"]
     
     var fortniteChallenges = ["Mythic Weapon Only Challenge", "0 Kill Win Challenge", "No Meds Challenge", "One Gun Only Challenge", "Sniper Only Challenge", "Pistol Only Challenge", "One Chest Only Challenge", "No Reload Challenge", "No Gun Challenge", "No Building Challenge", "SMG Only Challenge", "Floor is Lava Challenge", "Rainbow Gun Challenge", "Pickaxe Only Challenge", "Shotgun Only Challenge", "Gray Guns Only Challenge", "Pick up Enemy's Loadout Challenge", "Cars Only Challenge", "Sky Base Challenge"]
     
@@ -58,6 +61,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
             challengeLabel.textColor = .black
         }
         
+        NotificationCenter.default.addObserver(self, selector: #selector(modalDidDismiss), name: NSNotification.Name(rawValue:  "PeformAfterPresenting"), object: nil)
         
 //        do {
 //            audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Hang Glider Sound", ofType: "mp3")!))
@@ -69,16 +73,38 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         
     }
     
+    @objc func modalDidDismiss() {
+        checkIfUserIsSusbcribed { isSubscribed in
+            if isSubscribed {
+                self.bannerView.isHidden = true
+                self.removeAdsButton.isHidden = true
+            } else {
+                self.bannerView.adUnitID = "ca-app-pub-7930281625187952/3947297105"
+                self.bannerView.rootViewController = self
+                self.bannerView.load(GADRequest())
+                self.bannerView.delegate = self
+                
+                self.interstitial = self.createAndLoadInterstitial()
+            }
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
-        self.bannerView.adUnitID = "ca-app-pub-7930281625187952/3947297105"
-        self.bannerView.rootViewController = self
-        bannerView.load(GADRequest())
-        bannerView.delegate = self
-        
-        interstitial = createAndLoadInterstitial()
+        checkIfUserIsSusbcribed { isSubscribed in
+            if isSubscribed {
+                self.bannerView.isHidden = true
+                self.removeAdsButton.isHidden = true
+            } else {
+                self.bannerView.adUnitID = "ca-app-pub-7930281625187952/3947297105"
+                self.bannerView.rootViewController = self
+                self.bannerView.load(GADRequest())
+                self.bannerView.delegate = self
+                
+                self.interstitial = self.createAndLoadInterstitial()
+            }
+        }
     }
     
     func createAndLoadInterstitial() -> GADInterstitial {
@@ -184,20 +210,20 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         numberOfTapsLocation += 1
         print(numberOfTapsLocation)
         
-        
-        if numberOfTapsLocation == 5 {
-            if interstitial.isReady {
-                interstitial.present(fromRootViewController: self)
-                numberOfTapsLocation = 0
-            } else {
-                print("Ad wasn't ready")
-                numberOfTapsLocation = 0
+        checkIfUserIsSusbcribed(completion: { isSusbcribed in
+            if !isSusbcribed {
+                if self.numberOfTapsLocation == 5 {
+                    if self.interstitial.isReady {
+                        self.interstitial.present(fromRootViewController: self)
+                        self.numberOfTapsLocation = 0
+                    } else {
+                        print("Ad wasn't ready")
+                        self.numberOfTapsLocation = 0
+                    }
+                }
             }
-        }
-        
+        })
     }
-    
-    
     
     @IBAction func dismissPopUp(_ sender: Any) {
         animateOut()
@@ -214,18 +240,19 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         numberOfTapsChallenge += 1
         print(numberOfTapsChallenge)
         
-        
-        if numberOfTapsChallenge == 5 {
-            if interstitial.isReady {
-                interstitial.present(fromRootViewController: self)
-                numberOfTapsChallenge = 0
-            } else {
-                print("Ad wasn't ready")
-                numberOfTapsChallenge = 0
+        checkIfUserIsSusbcribed(completion: { isSusbcribed in
+            if !isSusbcribed {
+                if self.numberOfTapsChallenge == 5 {
+                    if self.interstitial.isReady {
+                        self.interstitial.present(fromRootViewController: self)
+                        self.numberOfTapsChallenge = 0
+                    } else {
+                        print("Ad wasn't ready")
+                        self.numberOfTapsChallenge = 0
+                    }
+                }
             }
-        }
-        
-        
+        })
     }
     
     @IBAction func dismissPopUpChallenge(_ sender: Any) {
@@ -239,5 +266,28 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         appDelegate.requestReview()
     }
     
+    @IBAction func removeAdsButtonPressed(_ sender: Any) {
+        let vc = UIHostingController(rootView: SusbcribeView())
+        present(vc, animated: true)
+    }
+    
+    func checkIfUserIsSusbcribed(completion: @escaping (Bool) -> Void) {
+        Purchases.shared.getCustomerInfo { (customerInfo, error) in
+            if let customerInfo = customerInfo {
+                if customerInfo.entitlements[Constants.entitlementID]?.isActive == true {
+                  // user has access to "your_entitlement_id"
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            } else {
+                completion(false)
+            }
+            
+            if let error = error {
+                print(error)
+                completion(false)
+            }
+        }
+    }
 }
-
