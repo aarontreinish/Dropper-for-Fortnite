@@ -61,7 +61,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
             challengeLabel.textColor = .black
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(modalDidDismiss), name: NSNotification.Name(rawValue:  "PeformAfterPresenting"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(modalDidDismiss), name: NSNotification.Name(rawValue: "PeformAfterPresenting"), object: nil)
         
 //        do {
 //            audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Hang Glider Sound", ofType: "mp3")!))
