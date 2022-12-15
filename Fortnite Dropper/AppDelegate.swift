@@ -24,11 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         Purchases.logLevel = .debug
-        Purchases.configure(
-            with: Configuration.Builder(withAPIKey: Constants.apiKey)
-                .with(appUserID: UUID().uuidString)
-                .build()
-        )
+        Purchases.configure(withAPIKey: Constants.apiKey)
         
         return true
     }
