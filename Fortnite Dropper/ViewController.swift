@@ -42,8 +42,7 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     
 //    var audioPlayer = AVAudioPlayer()
     var interstitial: GADInterstitial!
-    var numberOfTapsLocation = 0
-    var numberOfTapsChallenge = 0
+    var numberOfTaps = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -207,18 +206,18 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         
         locationLabel.text = locations[index]
         
-        numberOfTapsLocation += 1
-        print(numberOfTapsLocation)
+        numberOfTaps += 1
+        print(numberOfTaps)
         
         checkIfUserIsSusbcribed(completion: { isSusbcribed in
             if !isSusbcribed {
-                if self.numberOfTapsLocation == 5 {
+                if self.numberOfTaps >= 2 {
                     if self.interstitial.isReady {
                         self.interstitial.present(fromRootViewController: self)
-                        self.numberOfTapsLocation = 0
+                        self.numberOfTaps = 0
                     } else {
                         print("Ad wasn't ready")
-                        self.numberOfTapsLocation = 0
+                        self.numberOfTaps = 0
                     }
                 }
             }
@@ -237,18 +236,18 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         
         challengeLabel.text = challenges[index]
         
-        numberOfTapsChallenge += 1
-        print(numberOfTapsChallenge)
+        numberOfTaps += 1
+        print(numberOfTaps)
         
         checkIfUserIsSusbcribed(completion: { isSusbcribed in
             if !isSusbcribed {
-                if self.numberOfTapsChallenge == 5 {
+                if self.numberOfTaps >= 2 {
                     if self.interstitial.isReady {
                         self.interstitial.present(fromRootViewController: self)
-                        self.numberOfTapsChallenge = 0
+                        self.numberOfTaps = 0
                     } else {
                         print("Ad wasn't ready")
-                        self.numberOfTapsChallenge = 0
+                        self.numberOfTaps = 0
                     }
                 }
             }
