@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,7 @@
 		2183EC1220FE2BA6002203D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2183EC1020FE2BA6002203D3 /* Main.storyboard */; };
 		2183EC1720FE2BB2002203D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2183EC1520FE2BB2002203D3 /* LaunchScreen.storyboard */; };
 		2183EC3D20FF7AB6002203D3 /* Burbank Big Condensed Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2183EC3C20FF7A61002203D3 /* Burbank Big Condensed Black.ttf */; };
+		21DAA1132B0BB083002B1462 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 21DAA1122B0BB083002B1462 /* GoogleService-Info.plist */; };
 		21F265A7226CC987001A8B1A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F265A6226CC987001A8B1A /* StoreKit.framework */; };
 		5F53CE794BC9E4E31750B89C /* Pods_Fortnite_DropperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8F7A1B4BC7A3C8AF1AA5A4D /* Pods_Fortnite_DropperTests.framework */; };
 		71855A6A8BC04F89230D3FDA /* Pods_Fortnite_DropperUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9FEB6D7784BF74C247157C8 /* Pods_Fortnite_DropperUITests.framework */; };
@@ -56,6 +57,7 @@
 		2183EC1D20FE2BB2002203D3 /* Fortnite DropperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fortnite DropperTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2183EC2820FE2BB2002203D3 /* Fortnite DropperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fortnite DropperUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2183EC3C20FF7A61002203D3 /* Burbank Big Condensed Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Burbank Big Condensed Black.ttf"; sourceTree = "<group>"; };
+		21DAA1122B0BB083002B1462 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		21F265A6226CC987001A8B1A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4EE879936829B2E2B0C1B60A /* Pods-Fortnite DropperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fortnite DropperTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fortnite DropperTests/Pods-Fortnite DropperTests.release.xcconfig"; sourceTree = "<group>"; };
 		75E8B643133087016E752B45 /* Pods-Fortnite DropperUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fortnite DropperUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fortnite DropperUITests/Pods-Fortnite DropperUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				211A436F222844C8001C483A /* Hang Glider Sound.mp3 */,
 				211A437122284508001C483A /* Fortnite Bus Sound.mp3 */,
 				2131939C29461C1600B3BCE9 /* SusbcribeView.swift */,
+				21DAA1122B0BB083002B1462 /* GoogleService-Info.plist */,
 			);
 			path = "Fortnite Dropper";
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			files = (
 				2183EC1720FE2BB2002203D3 /* LaunchScreen.storyboard in Resources */,
 				211A437422284573001C483A /* Assets 2.xcassets in Resources */,
+				21DAA1132B0BB083002B1462 /* GoogleService-Info.plist in Resources */,
 				2183EC3D20FF7AB6002203D3 /* Burbank Big Condensed Black.ttf in Resources */,
 				211A437222284509001C483A /* Fortnite Bus Sound.mp3 in Resources */,
 				2183EC1220FE2BA6002203D3 /* Main.storyboard in Resources */,

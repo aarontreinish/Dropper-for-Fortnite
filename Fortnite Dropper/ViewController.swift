@@ -11,6 +11,8 @@ import GoogleMobileAds
 import AVFoundation
 import RevenueCat
 import SwiftUI
+import FirebaseCore
+import FirebaseFirestore
 
 class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDelegate {
     
@@ -24,9 +26,9 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     @IBOutlet weak var whatChallenge: UIButton!
     @IBOutlet weak var removeAdsButton: UIButton!
     
-    var fortniteLocations = ["The Citadel", "Anvil Square", "Shattered Slabs", "Frenzy Fields", "Breakwater Bay", "Slappy Shores", "Faulty Splits", "Lonely Labs", "Brutal Bastion", "Take the battle bus to the end", "Drop immediately"]
+    var fortniteLocations: [String] = []
     
-    var fortniteChallenges = ["Mythic Weapon Only Challenge", "0 Kill Win Challenge", "No Meds Challenge", "One Gun Only Challenge", "Sniper Only Challenge", "Pistol Only Challenge", "One Chest Only Challenge", "No Reload Challenge", "No Gun Challenge", "No Building Challenge", "SMG Only Challenge", "Floor is Lava Challenge", "Rainbow Gun Challenge", "Pickaxe Only Challenge", "Shotgun Only Challenge", "Gray Guns Only Challenge", "Pick up Enemy's Loadout Challenge", "Cars Only Challenge", "Sky Base Challenge"]
+    var fortniteChallenges: [String] = []
     
     var effect: UIVisualEffect!
     
@@ -47,6 +49,9 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        getLocations()
+        getChallenges()
         
         effect = visualEffectView.effect
         visualEffectView.effect = nil
@@ -70,6 +75,36 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
 //            print(error)
 //        }
         
+    }
+    
+    func getLocations() {
+        Firestore.firestore().collection("locations").getDocuments { snapshot, error in
+            if let error {
+                print(error)
+            }
+            
+            if let snapshot {
+                for document in snapshot.documents {
+                    guard let location = document["location"] as? String else { return }
+                    self.fortniteLocations.append(location)
+                }
+            }
+        }
+    }
+    
+    func getChallenges() {
+        Firestore.firestore().collection("challenges").getDocuments { snapshot, error in
+            if let error {
+                print(error)
+            }
+            
+            if let snapshot {
+                for document in snapshot.documents {
+                    guard let location = document["challenge"] as? String else { return }
+                    self.fortniteChallenges.append(location)
+                }
+            }
+        }
     }
     
     @objc func modalDidDismiss() {

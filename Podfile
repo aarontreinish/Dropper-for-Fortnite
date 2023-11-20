@@ -10,6 +10,8 @@ target 'Fortnite Dropper' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'RevenueCat'
+  pod 'Firebase'
+  pod 'FirebaseFirestore'
 
   target 'Fortnite DropperTests' do
     inherit! :search_paths
