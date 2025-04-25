@@ -7,16 +7,15 @@
 //
 
 import UIKit
-import GoogleMobileAds
 import AVFoundation
 import RevenueCat
 import SwiftUI
-import FirebaseCore
+import Firebase
 import FirebaseFirestore
+import RevenueCatUI
 
-class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDelegate {
+class ViewController: UIViewController {
     
-    @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet var locationView: UIView!
     @IBOutlet var challengeView: UIView!
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
@@ -24,7 +23,6 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     @IBOutlet weak var challengeLabel: UILabel!
     @IBOutlet weak var dropLocation: UIButton!
     @IBOutlet weak var whatChallenge: UIButton!
-    @IBOutlet weak var removeAdsButton: UIButton!
     
     var fortniteLocations: [String] = []
     
@@ -41,10 +39,24 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         }
     }
     
+    var dailyTapCount: Int {
+        get {
+            let savedDate = UserDefaults.standard.object(forKey: "lastTapDate") as? Date ?? Date.distantPast
+            if !Calendar.current.isDateInToday(savedDate) {
+                UserDefaults.standard.set(Date(), forKey: "lastTapDate")
+                UserDefaults.standard.set(0, forKey: "dailyTapCount")
+                return 0
+            }
+            return UserDefaults.standard.integer(forKey: "dailyTapCount")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "dailyTapCount")
+            UserDefaults.standard.set(Date(), forKey: "lastTapDate")
+        }
+    }
     
 //    var audioPlayer = AVAudioPlayer()
-    var interstitial: GADInterstitial!
-    var numberOfTaps = 0
+//    var numberOfTaps = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,17 +121,17 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     
     @objc func modalDidDismiss() {
         checkIfUserIsSusbcribed { isSubscribed in
-            if isSubscribed {
-                self.bannerView.isHidden = true
-                self.removeAdsButton.isHidden = true
-            } else {
-                self.bannerView.adUnitID = "ca-app-pub-7930281625187952/3947297105"
-                self.bannerView.rootViewController = self
-                self.bannerView.load(GADRequest())
-                self.bannerView.delegate = self
-                
-                self.interstitial = self.createAndLoadInterstitial()
-            }
+//            if isSubscribed {
+//                self.bannerView.isHidden = true
+//                self.removeAdsButton.isHidden = true
+//            } else {
+//                self.bannerView.adUnitID = "ca-app-pub-7930281625187952/3947297105"
+//                self.bannerView.rootViewController = self
+//                self.bannerView.load(Request())
+//                self.bannerView.delegate = self
+//
+////                self.interstitial = self.createAndLoadInterstitial()
+//            }
         }
     }
     
@@ -127,29 +139,18 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         super.viewWillAppear(animated)
         
         checkIfUserIsSusbcribed { isSubscribed in
-            if isSubscribed {
-                self.bannerView.isHidden = true
-                self.removeAdsButton.isHidden = true
-            } else {
-                self.bannerView.adUnitID = "ca-app-pub-7930281625187952/3947297105"
-                self.bannerView.rootViewController = self
-                self.bannerView.load(GADRequest())
-                self.bannerView.delegate = self
-                
-                self.interstitial = self.createAndLoadInterstitial()
-            }
+//            if isSubscribed {
+//                self.bannerView.isHidden = true
+//                self.removeAdsButton.isHidden = true
+//            } else {
+//                self.bannerView.adUnitID = "ca-app-pub-7930281625187952/3947297105"
+//                self.bannerView.rootViewController = self
+//                self.bannerView.load(Request())
+//                self.bannerView.delegate = self
+//
+////                self.interstitial = self.createAndLoadInterstitial()
+//            }
         }
-    }
-    
-    func createAndLoadInterstitial() -> GADInterstitial {
-        let interstitial = GADInterstitial(adUnitID: "ca-app-pub-7930281625187952/8747006959")
-        interstitial.delegate = self
-        interstitial.load(GADRequest())
-        return interstitial
-    }
-    
-    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-        interstitial = createAndLoadInterstitial()
     }
     
     func animateIn() {
@@ -234,29 +235,24 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     
     
     @IBAction func dropLocation(_ sender: UIButton) {
-        animateIn()
-        let locations = fortniteLocations
-        
-        let index = Int(arc4random_uniform(UInt32(locations.count)))
-        
-        locationLabel.text = locations[index]
-        
-        numberOfTaps += 1
-        print(numberOfTaps)
-        
-        checkIfUserIsSusbcribed(completion: { isSusbcribed in
-            if !isSusbcribed {
-                if self.numberOfTaps >= 2 {
-                    if self.interstitial.isReady {
-                        self.interstitial.present(fromRootViewController: self)
-                        self.numberOfTaps = 0
-                    } else {
-                        print("Ad wasn't ready")
-                        self.numberOfTaps = 0
-                    }
-                }
+        checkIfUserIsSusbcribed { isSubscribed in
+            if !isSubscribed && self.dailyTapCount >= 5 {
+                let vc = UIHostingController(rootView: PaywallView())
+                self.present(vc, animated: true)
+                return
             }
-        })
+            self.dailyTapCount += 1
+            
+            DispatchQueue.main.async {
+                self.animateIn()
+                let locations = self.fortniteLocations
+                let index = Int(arc4random_uniform(UInt32(locations.count)))
+                self.locationLabel.text = locations[index]
+            }
+        }
+        
+//        numberOfTaps += 1
+//        print(numberOfTaps)
     }
     
     @IBAction func dismissPopUp(_ sender: Any) {
@@ -264,29 +260,25 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
     }
     
     @IBAction func whatChallenge(_ sender: UIButton) {
-        animateInChallenge()
-        let challenges = fortniteChallenges
-        
-        let index = Int(arc4random_uniform(UInt32(challenges.count)))
-        
-        challengeLabel.text = challenges[index]
-        
-        numberOfTaps += 1
-        print(numberOfTaps)
-        
-        checkIfUserIsSusbcribed(completion: { isSusbcribed in
-            if !isSusbcribed {
-                if self.numberOfTaps >= 2 {
-                    if self.interstitial.isReady {
-                        self.interstitial.present(fromRootViewController: self)
-                        self.numberOfTaps = 0
-                    } else {
-                        print("Ad wasn't ready")
-                        self.numberOfTaps = 0
-                    }
-                }
+        checkIfUserIsSusbcribed { isSubscribed in
+            if !isSubscribed && self.dailyTapCount >= 5 {
+                let vc = UIHostingController(rootView: PaywallView())
+                self.present(vc, animated: true)
+                return
             }
-        })
+            self.dailyTapCount += 1
+            
+            DispatchQueue.main.async {
+                self.animateInChallenge()
+                let challenges = self.fortniteChallenges
+                let index = Int(arc4random_uniform(UInt32(challenges.count)))
+                self.challengeLabel.text = challenges[index]
+            }
+        }
+        
+//        numberOfTaps += 1
+//        print(numberOfTaps)
+        
     }
     
     @IBAction func dismissPopUpChallenge(_ sender: Any) {
@@ -294,21 +286,10 @@ class ViewController: UIViewController, GADBannerViewDelegate, GADInterstitialDe
         
     }
     
-    
-    @IBAction func rateButton(_ sender: Any) {
-        let appDelegate = AppDelegate()
-        appDelegate.requestReview()
-    }
-    
-    @IBAction func removeAdsButtonPressed(_ sender: Any) {
-        let vc = UIHostingController(rootView: SusbcribeView())
-        present(vc, animated: true)
-    }
-    
     func checkIfUserIsSusbcribed(completion: @escaping (Bool) -> Void) {
         Purchases.shared.getCustomerInfo { (customerInfo, error) in
             if let customerInfo = customerInfo {
-                if customerInfo.entitlements[Constants.entitlementID]?.isActive == true {
+                if customerInfo.entitlements[Constants.entitlementID]?.isActive == true || customerInfo.entitlements[Constants.subscription]?.isActive == true {
                   // user has access to "your_entitlement_id"
                     completion(true)
                 } else {

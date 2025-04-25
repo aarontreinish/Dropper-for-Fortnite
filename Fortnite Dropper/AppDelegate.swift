@@ -8,7 +8,6 @@
 
 import UIKit
 import StoreKit
-import GoogleMobileAds
 import RevenueCat
 import FirebaseCore
 
@@ -21,8 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        //GADMobileAds.configure(withApplicationID: "ca-app-pub-7930281625187952~8522651147")
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         Purchases.logLevel = .debug
         Purchases.configure(withAPIKey: Constants.apiKey)
@@ -69,6 +66,8 @@ struct Constants {
     static let apiKey = "appl_pDdFZWzPFpbjaCnegMbhLYUkYvb"
     
     static let entitlementID = "dropper_for_fortnite_subscription"
+    
+    static let subscription = "vic_roy_subscription"
     
     static let productID = "com.AaronTreinish.FortniteDropper.removeads"
 }
