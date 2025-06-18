@@ -11,7 +11,6 @@ import StoreKit
 import RevenueCat
 import FirebaseCore
 
-@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
@@ -59,15 +58,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
-}
-
-
-struct Constants {
-    static let apiKey = "appl_pDdFZWzPFpbjaCnegMbhLYUkYvb"
-    
-    static let entitlementID = "dropper_for_fortnite_subscription"
-    
-    static let subscription = "vic_roy_subscription"
-    
-    static let productID = "com.AaronTreinish.FortniteDropper.removeads"
 }
