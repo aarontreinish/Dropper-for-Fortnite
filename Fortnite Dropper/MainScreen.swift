@@ -6,6 +6,7 @@
 //  Copyright © 2025 Aaron Treinish. All rights reserved.
 //
 
+
 import SwiftUI
 import Firebase
 import RevenueCatUI
@@ -16,7 +17,7 @@ struct MainScreen: View {
     @State private var tapCountSnapshot: Int = 0
     @State private var showPaywall = false
     @State private var isLoading = false
-    @State private var fortniteLocations: [String] = []
+    @Binding var fortniteLocations: [String]
     @State private var fortniteChallenges: [String] = []
     @State private var showConfetti = false
 
@@ -26,6 +27,7 @@ struct MainScreen: View {
     @State private var selectedMode: String = "Solo"
     @State private var dropSpinnerAngle: Double = 0
     @State private var challengeSpinnerAngle: Double = 0
+    @State private var mapImageURL: String?
 
     let tapLimit = 1000
 
@@ -38,14 +40,14 @@ struct MainScreen: View {
                     endPoint: .bottom
                 )
                 .ignoresSafeArea()
-
+                
                 VStack(spacing: 24) {
                     Text("🎯 FORTNITE DROPPER")
                         .font(.fortnite(size: 36, weight: .heavy))
                         .foregroundColor(.white)
                         .shadow(color: .black.opacity(0.8), radius: 4, x: 2, y: 2)
                         .padding(.top, 32)
-
+                    
                     Picker("Mode", selection: $selectedMode) {
                         Text("Solo").tag("Solo")
                         Text("Duo").tag("Duo")
@@ -57,13 +59,13 @@ struct MainScreen: View {
                     .cornerRadius(10)
                     .shadow(radius: 3)
                     .padding(.horizontal)
-
+                    
                     // Roulette Wheel Buttons
                     RouletteWheelButton(label: "🎲 Drop", action: handleDropTap, spinnerAngle: $dropSpinnerAngle)
                         .disabled(isLoading)
                     RouletteWheelButton(label: "🔥 Challenge", action: handleChallengeTap, spinnerAngle: $challengeSpinnerAngle)
                         .disabled(isLoading)
-
+                    
                     // Tap Tracker
                     VStack(spacing: 4) {
                         Text("TAPS TODAY")
@@ -80,7 +82,7 @@ struct MainScreen: View {
                     .background(Color.black.opacity(0.2))
                     .cornerRadius(12)
                     .padding(.horizontal)
-
+                    
                     Spacer()
                 }
                 .padding()
@@ -105,7 +107,7 @@ struct MainScreen: View {
                         }
                     }
                 }
-                .animation(.easeOut(duration: 1), value: showConfetti)
+                    .animation(.easeOut(duration: 1), value: showConfetti)
             )
             .overlay(
                 Group {
@@ -194,9 +196,6 @@ struct MainScreen: View {
     func fetchData() {
         Task {
             do {
-                let locationDocs = try await Firestore.firestore().collection("locations").getDocuments()
-                fortniteLocations = locationDocs.documents.compactMap { $0["location"] as? String }
-
                 let challengeDocs = try await Firestore.firestore().collection("challenges").getDocuments()
                 fortniteChallenges = challengeDocs.documents.compactMap { $0["challenge"] as? String }
             } catch {
@@ -351,7 +350,7 @@ struct RouletteWheelButton: View {
             withAnimation(.easeInOut(duration: 1.5)) {
                 spinnerAngle += Double.random(in: 720...1440)
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 action()
             }
         }) {

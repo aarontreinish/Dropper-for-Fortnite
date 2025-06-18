@@ -34,6 +34,10 @@
 		21FE6D212E03202400437A2F /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FE6D202E03202400437A2F /* MainScreen.swift */; };
 		21FE6D232E03208200437A2F /* FortniteDropperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FE6D222E03208200437A2F /* FortniteDropperApp.swift */; };
 		21FE6D252E0320A000437A2F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FE6D242E0320A000437A2F /* Constants.swift */; };
+		21FE6D272E03316A00437A2F /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FE6D262E03316A00437A2F /* MainTabView.swift */; };
+		21FE6D292E03317600437A2F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FE6D282E03317600437A2F /* MapView.swift */; };
+		21FE6D2B2E03318900437A2F /* FortniteMapResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FE6D2A2E03318900437A2F /* FortniteMapResponse.swift */; };
+		21FE6D2E2E03322200437A2F /* Zoomable in Frameworks */ = {isa = PBXBuildFile; productRef = 21FE6D2D2E03322200437A2F /* Zoomable */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +76,9 @@
 		21FE6D202E03202400437A2F /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		21FE6D222E03208200437A2F /* FortniteDropperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortniteDropperApp.swift; sourceTree = "<group>"; };
 		21FE6D242E0320A000437A2F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		21FE6D262E03316A00437A2F /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		21FE6D282E03317600437A2F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		21FE6D2A2E03318900437A2F /* FortniteMapResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortniteMapResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +87,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21ADA6AA2DBC14EA00B51D01 /* RevenueCat in Frameworks */,
+				21FE6D2E2E03322200437A2F /* Zoomable in Frameworks */,
 				21F265A7226CC987001A8B1A /* StoreKit.framework in Frameworks */,
 				21ADA6AF2DBC153200B51D01 /* FirebaseAnalytics in Frameworks */,
 				21ADA6BF2DBC153200B51D01 /* FirebaseRemoteConfig in Frameworks */,
@@ -140,6 +148,9 @@
 				21FE6D242E0320A000437A2F /* Constants.swift */,
 				2183EC0E20FE2BA6002203D3 /* ViewController.swift */,
 				21FE6D202E03202400437A2F /* MainScreen.swift */,
+				21FE6D2A2E03318900437A2F /* FortniteMapResponse.swift */,
+				21FE6D282E03317600437A2F /* MapView.swift */,
+				21FE6D262E03316A00437A2F /* MainTabView.swift */,
 				21FE6D222E03208200437A2F /* FortniteDropperApp.swift */,
 				211A437322284573001C483A /* Assets 2.xcassets */,
 				2183EC1520FE2BB2002203D3 /* LaunchScreen.storyboard */,
@@ -258,6 +269,7 @@
 			packageReferences = (
 				21ADA6A82DBC14EA00B51D01 /* XCRemoteSwiftPackageReference "purchases-ios" */,
 				21ADA6AD2DBC153200B51D01 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				21FE6D2C2E03322200437A2F /* XCRemoteSwiftPackageReference "Zoomable" */,
 			);
 			productRefGroup = 2183EC0A20FE2BA6002203D3 /* Products */;
 			projectDirPath = "";
@@ -306,9 +318,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				21FE6D212E03202400437A2F /* MainScreen.swift in Sources */,
+				21FE6D292E03317600437A2F /* MapView.swift in Sources */,
 				2183EC0F20FE2BA6002203D3 /* ViewController.swift in Sources */,
 				21FE6D232E03208200437A2F /* FortniteDropperApp.swift in Sources */,
 				2183EC0D20FE2BA6002203D3 /* AppDelegate.swift in Sources */,
+				21FE6D2B2E03318900437A2F /* FortniteMapResponse.swift in Sources */,
+				21FE6D272E03316A00437A2F /* MainTabView.swift in Sources */,
 				2131939D29461C1600B3BCE9 /* SusbcribeView.swift in Sources */,
 				21FE6D252E0320A000437A2F /* Constants.swift in Sources */,
 			);
@@ -647,6 +662,14 @@
 				minimumVersion = 11.12.0;
 			};
 		};
+		21FE6D2C2E03322200437A2F /* XCRemoteSwiftPackageReference "Zoomable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ryohey/Zoomable.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -714,6 +737,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 21ADA6AD2DBC153200B51D01 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		21FE6D2D2E03322200437A2F /* Zoomable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 21FE6D2C2E03322200437A2F /* XCRemoteSwiftPackageReference "Zoomable" */;
+			productName = Zoomable;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

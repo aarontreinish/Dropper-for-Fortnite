@@ -21,7 +21,7 @@ struct FortniteDropperApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainScreen() // <- your SwiftUI entry point
+            MainTabView()
         }
     }
 }
