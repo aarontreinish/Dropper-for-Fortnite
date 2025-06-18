@@ -29,7 +29,7 @@ struct MainScreen: View {
     @State private var challengeSpinnerAngle: Double = 0
     @State private var mapImageURL: String?
 
-    let tapLimit = 1000
+    let tapLimit = 3
 
     var body: some View {
         NavigationView {
@@ -347,6 +347,7 @@ struct RouletteWheelButton: View {
 
     var body: some View {
         Button(action: {
+            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
             withAnimation(.easeInOut(duration: 1.5)) {
                 spinnerAngle += Double.random(in: 720...1440)
             }

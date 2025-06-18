@@ -33,6 +33,7 @@ struct MainTabView: View {
                     Label("Shop", systemImage: "bag.fill")
                 }
         }
+        .accentColor(Color.yellow)
         .task {
             await fetchMapLocations()
         }
