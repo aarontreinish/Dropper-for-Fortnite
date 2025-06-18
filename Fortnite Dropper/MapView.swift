@@ -16,7 +16,7 @@ struct MapView: View {
         NavigationView {
             ZStack {
                 LinearGradient(
-                    gradient: Gradient(colors: [Color.purple, Color.blue]),
+                    gradient: Gradient(colors: [Color.blue.opacity(0.8), Color.purple.opacity(0.8)]),
                     startPoint: .top,
                     endPoint: .bottom
                 )
@@ -56,3 +56,4 @@ struct MapView: View {
         }
     }
 }
+
