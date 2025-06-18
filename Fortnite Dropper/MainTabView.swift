@@ -22,6 +22,11 @@ struct MainTabView: View {
                 .tabItem {
                     Label("Map", systemImage: "map")
                 }
+            
+            StatsTabView()
+                .tabItem {
+                    Label("Stats", systemImage: "chart.bar.fill")
+                }
         }
         .task {
             await fetchMapLocations()

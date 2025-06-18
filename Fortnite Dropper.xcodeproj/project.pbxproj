@@ -11,6 +11,8 @@
 		211A437222284509001C483A /* Fortnite Bus Sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 211A437122284508001C483A /* Fortnite Bus Sound.mp3 */; };
 		211A437422284573001C483A /* Assets 2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 211A437322284573001C483A /* Assets 2.xcassets */; };
 		2131939D29461C1600B3BCE9 /* SusbcribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2131939C29461C1600B3BCE9 /* SusbcribeView.swift */; };
+		214885A52E033B7600466564 /* StatsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214885A42E033B7600466564 /* StatsTabView.swift */; };
+		214885A72E033B8400466564 /* FortniteStatsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214885A62E033B8400466564 /* FortniteStatsResponse.swift */; };
 		214DE3E2217BBBAC006795D6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 214DE3E1217BBBAC006795D6 /* WebKit.framework */; };
 		2183EC0D20FE2BA6002203D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2183EC0C20FE2BA6002203D3 /* AppDelegate.swift */; };
 		2183EC0F20FE2BA6002203D3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2183EC0E20FE2BA6002203D3 /* ViewController.swift */; };
@@ -62,6 +64,8 @@
 		211A437122284508001C483A /* Fortnite Bus Sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fortnite Bus Sound.mp3"; sourceTree = "<group>"; };
 		211A437322284573001C483A /* Assets 2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets 2.xcassets"; sourceTree = "<group>"; };
 		2131939C29461C1600B3BCE9 /* SusbcribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SusbcribeView.swift; sourceTree = "<group>"; };
+		214885A42E033B7600466564 /* StatsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTabView.swift; sourceTree = "<group>"; };
+		214885A62E033B8400466564 /* FortniteStatsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortniteStatsResponse.swift; sourceTree = "<group>"; };
 		214DE3E1217BBBAC006795D6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		2183EC0920FE2BA6002203D3 /* Fortnite Dropper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fortnite Dropper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2183EC0C20FE2BA6002203D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +152,8 @@
 				21FE6D242E0320A000437A2F /* Constants.swift */,
 				2183EC0E20FE2BA6002203D3 /* ViewController.swift */,
 				21FE6D202E03202400437A2F /* MainScreen.swift */,
+				214885A42E033B7600466564 /* StatsTabView.swift */,
+				214885A62E033B8400466564 /* FortniteStatsResponse.swift */,
 				21FE6D2A2E03318900437A2F /* FortniteMapResponse.swift */,
 				21FE6D282E03317600437A2F /* MapView.swift */,
 				21FE6D262E03316A00437A2F /* MainTabView.swift */,
@@ -319,10 +325,12 @@
 			files = (
 				21FE6D212E03202400437A2F /* MainScreen.swift in Sources */,
 				21FE6D292E03317600437A2F /* MapView.swift in Sources */,
+				214885A72E033B8400466564 /* FortniteStatsResponse.swift in Sources */,
 				2183EC0F20FE2BA6002203D3 /* ViewController.swift in Sources */,
 				21FE6D232E03208200437A2F /* FortniteDropperApp.swift in Sources */,
 				2183EC0D20FE2BA6002203D3 /* AppDelegate.swift in Sources */,
 				21FE6D2B2E03318900437A2F /* FortniteMapResponse.swift in Sources */,
+				214885A52E033B7600466564 /* StatsTabView.swift in Sources */,
 				21FE6D272E03316A00437A2F /* MainTabView.swift in Sources */,
 				2131939D29461C1600B3BCE9 /* SusbcribeView.swift in Sources */,
 				21FE6D252E0320A000437A2F /* Constants.swift in Sources */,

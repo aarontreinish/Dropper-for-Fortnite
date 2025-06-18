@@ -22,23 +22,36 @@ struct MapView: View {
                 )
                 .ignoresSafeArea()
 
-                if let url = URL(string: mapImageURL) {
-                    AsyncImage(url: url) { image in
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .padding()
-                            .cornerRadius(16)
-                            .shadow(radius: 10)
-                            .zoomable()
-                    } placeholder: {
-                        ProgressView()
-                    }
-                } else {
-                    Text("Map loading...")
-                        .font(.fortnite(size: 20))
+                VStack {
+                    Text("Map")
+                        .font(.fortnite(size: 36, weight: .heavy))
                         .foregroundColor(.white)
+                        .shadow(color: .black.opacity(0.8), radius: 4, x: 2, y: 2)
+                        .padding(.top, 32)
+                    
+                    Spacer()
+                    
+                    if let url = URL(string: mapImageURL) {
+                        AsyncImage(url: url) { image in
+                            image
+                                .resizable()
+                                .scaledToFit()
+                                .padding()
+                                .cornerRadius(16)
+                                .shadow(radius: 10)
+                                .zoomable()
+                        } placeholder: {
+                            ProgressView()
+                        }
+                    } else {
+                        Text("Map loading...")
+                            .font(.fortnite(size: 20))
+                            .foregroundColor(.white)
+                    }
+                    
+                    Spacer()
                 }
+
             }
         }
     }
