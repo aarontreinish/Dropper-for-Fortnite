@@ -23,64 +23,68 @@ struct MainScreen: View {
     @State private var showDropOverlay = false
     @State private var showChallengeOverlay = false
     @State private var showOverlayText: String?
+    @State private var selectedMode: String = "Solo"
+    @State private var dropSpinnerAngle: Double = 0
+    @State private var challengeSpinnerAngle: Double = 0
 
-    let tapLimit = 100
+    let tapLimit = 1000
 
     var body: some View {
         NavigationView {
-            VStack(spacing: 24) {
-                Text("🎯 Fortnite Dropper")
-                    .font(.largeTitle.bold())
-                    .foregroundColor(.yellow)
-                    .shadow(color: .black.opacity(0.7), radius: 4, x: 2, y: 2)
-                    .padding(.top, 32)
+            ZStack {
+                LinearGradient(
+                    gradient: Gradient(colors: [Color.blue.opacity(0.8), Color.purple.opacity(0.8)]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .ignoresSafeArea()
 
-                // Drop Button
-                Button(action: handleDropTap) {
-                    Text("🎲 Drop Location")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(
-                            LinearGradient(gradient: Gradient(colors: [.purple, .blue]),
-                                           startPoint: .topLeading,
-                                           endPoint: .bottomTrailing)
-                        )
-                        .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 5)
+                VStack(spacing: 24) {
+                    Text("🎯 FORTNITE DROPPER")
+                        .font(.fortnite(size: 36, weight: .heavy))
                         .foregroundColor(.white)
-                        .cornerRadius(12)
-                }
-                .disabled(isLoading)
+                        .shadow(color: .black.opacity(0.8), radius: 4, x: 2, y: 2)
+                        .padding(.top, 32)
 
-                // Challenge Button
-                Button(action: handleChallengeTap) {
-                    Text("🔥 Challenge Me")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(
-                            LinearGradient(gradient: Gradient(colors: [.purple, .blue]),
-                                           startPoint: .topLeading,
-                                           endPoint: .bottomTrailing)
-                        )
-                        .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 5)
-                        .foregroundColor(.white)
-                        .cornerRadius(12)
-                }
-                .disabled(isLoading)
+                    Picker("Mode", selection: $selectedMode) {
+                        Text("Solo").tag("Solo")
+                        Text("Duo").tag("Duo")
+                        Text("Squad").tag("Squad")
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .padding()
+                    .background(Color.white.opacity(0.1))
+                    .cornerRadius(10)
+                    .shadow(radius: 3)
+                    .padding(.horizontal)
 
-                // Tap Tracker
-                VStack(spacing: 4) {
-                    Text("Taps Today: \(tapCountSnapshot)/\(tapLimit)")
-                    ProgressView(value: Float(tapCountSnapshot), total: Float(tapLimit))
-                        .progressViewStyle(LinearProgressViewStyle(tint: .green))
-                        .frame(width: 200)
-                }
-                .padding(.top, 12)
+                    // Roulette Wheel Buttons
+                    RouletteWheelButton(label: "🎲 Drop", action: handleDropTap, spinnerAngle: $dropSpinnerAngle)
+                        .disabled(isLoading)
+                    RouletteWheelButton(label: "🔥 Challenge", action: handleChallengeTap, spinnerAngle: $challengeSpinnerAngle)
+                        .disabled(isLoading)
 
-                Spacer()
+                    // Tap Tracker
+                    VStack(spacing: 4) {
+                        Text("TAPS TODAY")
+                            .font(.fortnite(size: 12))
+                            .foregroundColor(.white.opacity(0.8))
+                        Text("\(tapCountSnapshot)/\(tapLimit)")
+                            .font(.fortnite(size: 22, weight: .bold))
+                            .foregroundColor(.green)
+                        ProgressView(value: Float(tapCountSnapshot), total: Float(tapLimit))
+                            .progressViewStyle(LinearProgressViewStyle(tint: .green))
+                            .frame(width: 200)
+                    }
+                    .padding(.top, 12)
+                    .background(Color.black.opacity(0.2))
+                    .cornerRadius(12)
+                    .padding(.horizontal)
+
+                    Spacer()
+                }
+                .padding()
             }
-            .padding()
             .onAppear {
                 fetchData()
                 tapCountSnapshot = getDailyTapCount()
@@ -111,7 +115,12 @@ struct MainScreen: View {
                                 showOverlayText = nil
                             }
                         }
-                        .transition(.scale.combined(with: .opacity))
+                        .background(.ultraThinMaterial)
+                        .transition(.asymmetric(
+                            insertion: .scale(scale: 0.8).combined(with: .opacity),
+                            removal: .opacity
+                        ))
+                        .animation(.spring(response: 0.5, dampingFraction: 0.7), value: showOverlayText)
                         .zIndex(1)
                     }
                 }
@@ -145,6 +154,11 @@ struct MainScreen: View {
 
         incrementDailyTapCount()
         tapCountSnapshot = getDailyTapCount()
+
+        withAnimation(.easeInOut(duration: 1.2)) {
+            dropSpinnerAngle += 720
+        }
+
         dropResult = fortniteLocations.randomElement()
         showOverlayText = "Drop at: \(dropResult ?? "")"
         triggerConfetti()
@@ -158,8 +172,22 @@ struct MainScreen: View {
 
         incrementDailyTapCount()
         tapCountSnapshot = getDailyTapCount()
-        challengeResult = fortniteChallenges.randomElement()
-        showOverlayText = "Challenge: \(challengeResult ?? "")"
+
+        withAnimation(.easeInOut(duration: 1.2)) {
+            challengeSpinnerAngle += 720
+        }
+
+        let filteredChallenges = fortniteChallenges.filter { challenge in
+            challenge.hasPrefix("\(selectedMode):") || !challenge.contains(":")
+        }
+
+        guard let challenge = filteredChallenges.randomElement() else {
+            showOverlayText = "No challenges available."
+            return
+        }
+
+        challengeResult = challenge
+        showOverlayText = challenge.components(separatedBy: ": ").last ?? challenge
         triggerConfetti()
     }
 
@@ -177,6 +205,62 @@ struct MainScreen: View {
         }
     }
 
+    func tagAndWriteChallenges() {
+        let rawChallenges = [
+            // Solo
+            "No Gun Challenge", "0 Kill Win Challenge", "Pistol Only Challenge", "No Reload Challenge",
+            "One Gun Only Challenge", "Gray Guns Only Challenge", "Pickaxe Only Challenge", "Sniper Only Challenge",
+            "SMG Only Challenge", "Shotgun Only Challenge", "Solo Stealth: Hide until final circle",
+            "Solo Medic: Only carry healing items", "Solo Sprint: Never stop sprinting",
+
+            // Duo
+            "Duo: Share all loot evenly", "Duo: Stay within 10 meters of each other", "Duo: Only one teammate can build",
+            "Duo: Only revive your teammate once", "Duo: One teammate uses weapons, one heals", "Duo: Communicate using only pings",
+
+            // Squad
+            "Squad: Each player lands at a different POI", "Squad: One person calls all decisions",
+            "Squad: No comms, only emotes", "Squad: Protect the lowest health teammate",
+            "Squad: Use only green weapons", "Squad: Rotate using vehicles only",
+
+            // Universal
+            "No Building Challenge", "Sky Base Challenge", "Pick up Enemy's Loadout Challenge",
+            "Floor is Lava Challenge", "One Chest Only Challenge", "All Medalions Challenge",
+            "No Meds Challenge", "Rainbow Gun Challenge", "Only use items from vending machines",
+            "Must dance after every elimination", "Cannot open supply drops", "No aiming down sights"
+        ]
+
+        let db = Firestore.firestore()
+
+        for raw in rawChallenges {
+            let tag: String
+            let lower = raw.lowercased()
+
+            if lower.contains("solo") || lower.contains("0 kill") || lower.contains("no gun") {
+                tag = "Solo"
+            } else if lower.contains("duo") || lower.contains("partner") {
+                tag = "Duo"
+            } else if lower.contains("squad") || lower.contains("teammate") {
+                tag = "Squad"
+            } else if lower.contains("smg") || lower.contains("shotgun") || lower.contains("sniper") || lower.contains("pistol") || lower.contains("pickaxe") || lower.contains("loadout") || lower.contains("gray") {
+                tag = "Solo"
+            } else {
+                tag = "" // universal
+            }
+
+            let finalChallenge = tag.isEmpty ? raw : "\(tag): \(raw)"
+            let docID = UUID().uuidString
+            db.collection("challenges").document(docID).setData([
+                "challenge": finalChallenge
+            ]) { error in
+                if let error = error {
+                    print("🔥 Error writing challenge: \(error)")
+                } else {
+                    print("✅ Wrote challenge: \(finalChallenge)")
+                }
+            }
+        }
+    }
+
     func triggerConfetti() {
 //        showConfetti = true
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -187,7 +271,7 @@ struct MainScreen: View {
     @ViewBuilder
     func animatedCard(text: String) -> some View {
         Text(text)
-            .font(.title2.bold())
+            .font(.fortnite(size: 22, weight: .bold))
             .foregroundColor(.white)
             .padding()
             .frame(maxWidth: .infinity)
@@ -211,7 +295,7 @@ struct ResultOverlayCard: View {
             Spacer()
             VStack(spacing: 16) {
                 Text(text)
-                    .font(.title.bold())
+                    .font(.fortnite(size: 28, weight: .bold))
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
@@ -253,5 +337,45 @@ extension Color {
         return Color(hue: Double.random(in: 0...1),
                      saturation: 0.8,
                      brightness: 0.9)
+    }
+}
+
+// MARK: - RouletteWheelButton
+struct RouletteWheelButton: View {
+    let label: String
+    let action: () -> Void
+    @Binding var spinnerAngle: Double
+
+    var body: some View {
+        Button(action: {
+            withAnimation(.easeInOut(duration: 1.5)) {
+                spinnerAngle += Double.random(in: 720...1440)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                action()
+            }
+        }) {
+            ZStack {
+                Circle()
+                    .fill(AngularGradient(
+                        gradient: Gradient(colors: [.purple, .blue, .cyan, .purple]),
+                        center: .center))
+                    .frame(width: 180, height: 180)
+                    .rotationEffect(.degrees(spinnerAngle))
+
+                Text(label)
+                    .font(.fortnite(size: 18, weight: .semibold))
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.black.opacity(0.75))
+                    .clipShape(Capsule())
+            }
+        }
+    }
+}
+
+extension Font {
+    static func fortnite(size: CGFloat, weight: Font.Weight = .regular) -> Font {
+        return .custom("Burbank Big Condensed Black", size: size).weight(weight)
     }
 }
