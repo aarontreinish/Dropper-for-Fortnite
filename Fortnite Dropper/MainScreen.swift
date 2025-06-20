@@ -6,10 +6,10 @@
 //  Copyright © 2025 Aaron Treinish. All rights reserved.
 //
 
-
 import SwiftUI
 import Firebase
 import RevenueCatUI
+import RevenueCat
 
 struct MainScreen: View {
     @State private var dropResult: String?
@@ -30,6 +30,7 @@ struct MainScreen: View {
     @State private var mapImageURL: String?
 
     let tapLimit = 3
+    @State private var isUserSubscribed = false
 
     var body: some View {
         NavigationView {
@@ -67,21 +68,37 @@ struct MainScreen: View {
                         .disabled(isLoading)
                     
                     // Tap Tracker
-                    VStack(spacing: 4) {
-                        Text("TAPS TODAY")
-                            .font(.fortnite(size: 12))
-                            .foregroundColor(.white.opacity(0.8))
-                        Text("\(tapCountSnapshot)/\(tapLimit)")
-                            .font(.fortnite(size: 22, weight: .bold))
-                            .foregroundColor(.green)
-                        ProgressView(value: Float(tapCountSnapshot), total: Float(tapLimit))
-                            .progressViewStyle(LinearProgressViewStyle(tint: .green))
-                            .frame(width: 200)
+                    if !isUserSubscribed {
+                        VStack(spacing: 4) {
+                            Text("TAPS TODAY")
+                                .font(.fortnite(size: 12))
+                                .foregroundColor(.white.opacity(0.8))
+                            Text("\(tapCountSnapshot)/\(tapLimit)")
+                                .font(.fortnite(size: 22, weight: .bold))
+                                .foregroundColor(.green)
+                            ProgressView(value: Float(tapCountSnapshot), total: Float(tapLimit))
+                                .progressViewStyle(LinearProgressViewStyle(tint: .green))
+                                .frame(width: 200)
+                        }
+                        .padding(.top, 12)
+                        .background(Color.black.opacity(0.2))
+                        .cornerRadius(12)
+                        .padding(.horizontal)
+
+                        Button(action: {
+                            showPaywall = true
+                        }) {
+                            Text("Subscribe for Unlimited Drops and Challenges")
+                                .font(.fortnite(size: 16, weight: .bold))
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 10)
+                                .background(Color.orange)
+                                .cornerRadius(10)
+                                .shadow(color: .black.opacity(0.3), radius: 4, x: 0, y: 2)
+                        }
+                        .padding(.top, 8)
                     }
-                    .padding(.top, 12)
-                    .background(Color.black.opacity(0.2))
-                    .cornerRadius(12)
-                    .padding(.horizontal)
                     
                     Spacer()
                 }
@@ -89,7 +106,10 @@ struct MainScreen: View {
             }
             .onAppear {
                 fetchData()
-                tapCountSnapshot = getDailyTapCount()
+                checkIfUserIsSusbcribed { isSubscribed in
+                    isUserSubscribed = isSubscribed
+                    tapCountSnapshot = getDailyTapCount()
+                }
             }
             .sheet(isPresented: $showPaywall) {
                 PaywallView() // Use your actual paywall here
@@ -149,48 +169,81 @@ struct MainScreen: View {
     }
 
     func handleDropTap() {
-        guard getDailyTapCount() < tapLimit else {
-            showPaywall = true
-            return
+        checkIfUserIsSusbcribed { isSubscribed in
+            if isSubscribed {
+                withAnimation(.easeInOut(duration: 1.2)) {
+                    dropSpinnerAngle += 720
+                }
+
+                dropResult = fortniteLocations.randomElement()
+                showOverlayText = "Drop at: \(dropResult ?? "")"
+                triggerConfetti()
+            } else {
+                guard getDailyTapCount() < tapLimit else {
+                    showPaywall = true
+                    return
+                }
+
+                incrementDailyTapCount()
+                tapCountSnapshot = getDailyTapCount()
+
+                withAnimation(.easeInOut(duration: 1.2)) {
+                    dropSpinnerAngle += 720
+                }
+
+                dropResult = fortniteLocations.randomElement()
+                showOverlayText = "Drop at: \(dropResult ?? "")"
+                triggerConfetti()
+            }
         }
-
-        incrementDailyTapCount()
-        tapCountSnapshot = getDailyTapCount()
-
-        withAnimation(.easeInOut(duration: 1.2)) {
-            dropSpinnerAngle += 720
-        }
-
-        dropResult = fortniteLocations.randomElement()
-        showOverlayText = "Drop at: \(dropResult ?? "")"
-        triggerConfetti()
     }
 
     func handleChallengeTap() {
-        guard getDailyTapCount() < tapLimit else {
-            showPaywall = true
-            return
+        checkIfUserIsSusbcribed { isSubscribed in
+            if isSubscribed {
+                withAnimation(.easeInOut(duration: 1.2)) {
+                    challengeSpinnerAngle += 720
+                }
+
+                let filteredChallenges = fortniteChallenges.filter { challenge in
+                    challenge.hasPrefix("\(selectedMode):") || !challenge.contains(":")
+                }
+
+                guard let challenge = filteredChallenges.randomElement() else {
+                    showOverlayText = "No challenges available."
+                    return
+                }
+
+                challengeResult = challenge
+                showOverlayText = challenge.components(separatedBy: ": ").last ?? challenge
+                triggerConfetti()
+            } else {
+                guard getDailyTapCount() < tapLimit else {
+                    showPaywall = true
+                    return
+                }
+
+                incrementDailyTapCount()
+                tapCountSnapshot = getDailyTapCount()
+
+                withAnimation(.easeInOut(duration: 1.2)) {
+                    challengeSpinnerAngle += 720
+                }
+
+                let filteredChallenges = fortniteChallenges.filter { challenge in
+                    challenge.hasPrefix("\(selectedMode):") || !challenge.contains(":")
+                }
+
+                guard let challenge = filteredChallenges.randomElement() else {
+                    showOverlayText = "No challenges available."
+                    return
+                }
+
+                challengeResult = challenge
+                showOverlayText = challenge.components(separatedBy: ": ").last ?? challenge
+                triggerConfetti()
+            }
         }
-
-        incrementDailyTapCount()
-        tapCountSnapshot = getDailyTapCount()
-
-        withAnimation(.easeInOut(duration: 1.2)) {
-            challengeSpinnerAngle += 720
-        }
-
-        let filteredChallenges = fortniteChallenges.filter { challenge in
-            challenge.hasPrefix("\(selectedMode):") || !challenge.contains(":")
-        }
-
-        guard let challenge = filteredChallenges.randomElement() else {
-            showOverlayText = "No challenges available."
-            return
-        }
-
-        challengeResult = challenge
-        showOverlayText = challenge.components(separatedBy: ": ").last ?? challenge
-        triggerConfetti()
     }
 
     func fetchData() {
@@ -256,6 +309,26 @@ struct MainScreen: View {
                 } else {
                     print("✅ Wrote challenge: \(finalChallenge)")
                 }
+            }
+        }
+    }
+    
+    func checkIfUserIsSusbcribed(completion: @escaping (Bool) -> Void) {
+        Purchases.shared.getCustomerInfo { (customerInfo, error) in
+            if let customerInfo = customerInfo {
+                if customerInfo.entitlements[Constants.entitlementID]?.isActive == true || customerInfo.entitlements[Constants.subscription]?.isActive == true {
+                  // user has access to "your_entitlement_id"
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            } else {
+                completion(false)
+            }
+            
+            if let error = error {
+                print(error)
+                completion(false)
             }
         }
     }

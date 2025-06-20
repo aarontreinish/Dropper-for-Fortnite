@@ -8,6 +8,8 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import RevenueCat
+import RevenueCatUI
 
 struct ShopTabView: View {
     @State private var isLoading = false
@@ -15,6 +17,7 @@ struct ShopTabView: View {
     @State private var featuredEntries: [ShopEntry] = []
     @State private var dailyEntries: [ShopEntry] = []
     @State private var shopEntries: [ShopEntry] = []
+    @State private var selectedTags: Set<String> = []
 
     var body: some View {
         NavigationView {
@@ -33,6 +36,8 @@ struct ShopTabView: View {
                         .shadow(color: .black.opacity(0.8), radius: 4, x: 2, y: 2)
                         .padding(.top, 32)
                     
+                    ShopFilterBar(shopEntries: shopEntries, selectedTags: $selectedTags)
+                    
                     Spacer()
                     
                     if isLoading {
@@ -43,7 +48,7 @@ struct ShopTabView: View {
                             .multilineTextAlignment(.center)
                             .padding()
                     } else {
-                        FortniteShopView(entries: shopEntries)
+                        ShopEntriesFilteredView(shopEntries: shopEntries, selectedTags: selectedTags)
                     }
                     
                     Spacer()
@@ -88,4 +93,106 @@ struct ShopTabView: View {
         return nil
     }
 
+}
+
+struct ShopEntriesFilteredView: View {
+    var shopEntries: [ShopEntry]
+    var selectedTags: Set<String>
+
+    var body: some View {
+        let filtered = shopEntries.compactMap { entry -> ShopEntry? in
+            guard let brItems = entry.brItems else { return nil }
+            let filteredItems = selectedTags.isEmpty
+                ? brItems
+                : brItems.filter { item in
+                    let tags = item.type.displayValue
+                    return selectedTags.contains(tags)
+                }
+            guard !filteredItems.isEmpty else { return nil }
+
+            return ShopEntry(
+                regularPrice: entry.regularPrice,
+                finalPrice: entry.finalPrice,
+                devName: entry.devName,
+                offerId: entry.offerId,
+                inDate: entry.inDate,
+                outDate: entry.outDate,
+                giftable: entry.giftable,
+                refundable: entry.refundable,
+                sortPriority: entry.sortPriority,
+                tileSize: entry.tileSize,
+                layoutId: entry.layoutId,
+                layout: entry.layout,
+                section: entry.section,
+                displayGroup: entry.displayGroup,
+                newDisplayAsset: entry.newDisplayAsset,
+                brItems: filteredItems
+            )
+        }
+
+        return FortniteShopView(entries: filtered)
+    }
+}
+
+struct ShopFilterBar: View {
+    let shopEntries: [ShopEntry]
+    @Binding var selectedTags: Set<String>
+    @State var showPaywall = false
+
+    var body: some View {
+        HStack {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    let allTags = Array(Set(shopEntries.flatMap { $0.brItems?.map { $0.type.displayValue } ?? [] })).sorted()
+                    ForEach(allTags, id: \.self) { tag in
+                        Button(action: {
+                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+
+                            checkIfUserIsSusbcribed { isSubscribed in
+                                if isSubscribed {
+                                    if selectedTags.contains(tag) {
+                                        selectedTags.remove(tag)
+                                    } else {
+                                        selectedTags.insert(tag)
+                                    }
+                                } else {
+                                    showPaywall = true
+                                }
+                            }
+                        }) {
+                            Text(tag)
+                                .font(.fortnite(size: 24, weight: .heavy))
+                                .padding(8)
+                                .background(selectedTags.contains(tag) ? Color.yellow : Color.gray.opacity(0.5))
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                        }
+                    }
+                }.padding(.horizontal)
+            }
+        }
+        .fullScreenCover(isPresented: $showPaywall) {
+            PaywallView()
+        }
+    }
+    
+    func checkIfUserIsSusbcribed(completion: @escaping (Bool) -> Void) {
+        Purchases.shared.getCustomerInfo { (customerInfo, error) in
+            if let customerInfo = customerInfo {
+                if customerInfo.entitlements[Constants.entitlementID]?.isActive == true || customerInfo.entitlements[Constants.subscription]?.isActive == true {
+                  // user has access to "your_entitlement_id"
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            } else {
+                completion(false)
+            }
+            
+            if let error = error {
+                print(error)
+                completion(false)
+            }
+        }
+    }
 }

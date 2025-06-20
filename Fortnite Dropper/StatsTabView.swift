@@ -8,13 +8,27 @@
 
 
 import SwiftUI
+import RevenueCat
+import RevenueCatUI
 
 struct StatsTabView: View {
     @State private var username: String = ""
     @State private var platform: String = "epic"
     @State private var stats: PlayerStats?
+    @State private var allStats: FortniteGameModes?
     @State private var isLoading = false
     @State private var errorMessage: String?
+    @State private var showPaywall = false
+
+    private var hasUsedDailyLookup: Bool {
+        let lastLookupKey = "lastStatLookupDate"
+        let defaults = UserDefaults.standard
+        let calendar = Calendar.current
+        if let lastLookup = defaults.object(forKey: lastLookupKey) as? Date {
+            return calendar.isDateInToday(lastLookup)
+        }
+        return false
+    }
 
     var body: some View {
         NavigationView {
@@ -32,6 +46,32 @@ struct StatsTabView: View {
                         .foregroundColor(.white)
                         .shadow(color: .black.opacity(0.8), radius: 4, x: 2, y: 2)
                         .padding(.top, 32)
+
+                    if !showPaywall {
+                        if hasUsedDailyLookup {
+                            Text("Daily stat lookup used")
+                                .font(.fortnite(size: 18, weight: .regular))
+                                .foregroundColor(.yellow)
+                                .padding(.top, -10)
+                        } else {
+                            Text("1 free stat lookup remaining today")
+                                .font(.fortnite(size: 18, weight: .regular))
+                                .foregroundColor(.green)
+                                .padding(.top, -10)
+                        }
+                        Button(action: {
+                            showPaywall = true
+                        }) {
+                            Text("Subscribe for Unlimited Lookups")
+                                .font(.fortnite(size: 20, weight: .bold))
+                                .padding()
+                                .background(Color.orange)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                                .shadow(color: .black.opacity(0.3), radius: 4, x: 2, y: 2)
+                        }
+                        .padding(.bottom, 10)
+                    }
                     
                     TextField("Epic Username", text: $username)
                         .padding()
@@ -64,7 +104,7 @@ struct StatsTabView: View {
 
                     if isLoading {
                         ProgressView()
-                    } else if let stats = stats {
+                    } else if let stats = stats, let allStats = allStats {
                         ScrollView {
                             VStack(alignment: .leading, spacing: 16) {
                                 StatGroupView(title: "Lifetime Stats", items: [
@@ -98,6 +138,30 @@ struct StatsTabView: View {
                                     "Players Outlived: \(stats.playersOutlived)",
                                     "Last Modified: \(stats.lastModified)"
                                 ])
+                                
+                                StatGroupView(title: "Solo Stats", items: [
+                                    "Score: \(allStats.solo.score)",
+                                    "Wins: \(allStats.solo.wins)",
+                                    "Kills: \(allStats.solo.kills)",
+                                    "Matches: \(allStats.solo.matches)",
+                                    "KD: \(String(format: "%.2f", allStats.solo.kd))"
+                                ])
+
+                                StatGroupView(title: "Duo Stats", items: [
+                                    "Score: \(allStats.duo.score)",
+                                    "Wins: \(allStats.duo.wins)",
+                                    "Kills: \(allStats.duo.kills)",
+                                    "Matches: \(allStats.duo.matches)",
+                                    "KD: \(String(format: "%.2f", allStats.duo.kd))"
+                                ])
+
+                                StatGroupView(title: "Squad Stats", items: [
+                                    "Score: \(allStats.squad.score)",
+                                    "Wins: \(allStats.squad.wins)",
+                                    "Kills: \(allStats.squad.kills)",
+                                    "Matches: \(allStats.squad.matches)",
+                                    "KD: \(String(format: "%.2f", allStats.squad.kd))"
+                                ])
                             }
                             .padding(.horizontal)
                             .padding(.vertical, 12)
@@ -114,54 +178,110 @@ struct StatsTabView: View {
                 .padding()
             }
         }
+        .fullScreenCover(isPresented: $showPaywall) {
+            PaywallView()
+        }
     }
 
     func fetchStats() {
         guard !username.isEmpty else { return }
-        isLoading = true
-        errorMessage = nil
-        stats = nil
 
-        let encodedUsername = username.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? username
-        let urlString = "https://fortnite-api.com/v2/stats/br/v2?name=\(encodedUsername)&accountType=\(platform)"
+        // Free stat lookup gating logic
+        let lastLookupKey = "lastStatLookupDate"
+        let defaults = UserDefaults.standard
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
 
-        guard let url = URL(string: urlString) else {
-            errorMessage = "Invalid URL"
-            isLoading = false
+        if let lastLookup = defaults.object(forKey: lastLookupKey) as? Date,
+           calendar.isDate(lastLookup, inSameDayAs: today) {
+            errorMessage = "You’ve already used your free stat lookup for today. Subscribe to get unlimited access."
+            showPaywall = true
             return
         }
 
-        var request = URLRequest(url: url)
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("92c33d03-c1be-4fc5-b104-467fa7b5a416", forHTTPHeaderField: "Authorization")
-
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            DispatchQueue.main.async {
-                isLoading = false
-
-                if let error = error {
-                    errorMessage = "Error: \(error.localizedDescription)"
-                    return
-                }
-
-                guard let data = data else {
-                    errorMessage = "No data received"
-                    return
-                }
-                
-                if let jsonString = String(data: data, encoding: .utf8) {
-                    print("Raw JSON response:\n\(jsonString)")
-                }
-
-                do {
-                    let decoded = try JSONDecoder().decode(FortniteStatsResponse.self, from: data)
-                    stats = decoded.data?.stats.all.overall
-                } catch {
-                    print("Error decoding response: \(error)")
-                    errorMessage = "Could not decode response"
-                }
+        checkIfUserIsSusbcribed { isSubscribed in
+            if isSubscribed {
+                // Continue to fetch stats (subscribed users)
+            } else {
+                // Allow 1 free lookup per day for non-subscribers
+                defaults.set(today, forKey: lastLookupKey)
             }
-        }.resume()
+
+            isLoading = true
+            errorMessage = nil
+            stats = nil
+            allStats = nil
+
+            let encodedUsername = username.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? username
+            let urlString = "https://fortnite-api.com/v2/stats/br/v2?name=\(encodedUsername)&accountType=\(platform)"
+
+            guard let url = URL(string: urlString) else {
+                errorMessage = "Invalid URL"
+                isLoading = false
+                return
+            }
+
+            var request = URLRequest(url: url)
+            request.setValue("application/json", forHTTPHeaderField: "Accept")
+            request.setValue("92c33d03-c1be-4fc5-b104-467fa7b5a416", forHTTPHeaderField: "Authorization")
+
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                DispatchQueue.main.async {
+                    isLoading = false
+
+                    if let error = error {
+                        errorMessage = "Error: \(error.localizedDescription)"
+                        return
+                    }
+
+                    guard let data = data else {
+                        errorMessage = "No data received"
+                        return
+                    }
+
+                    if let jsonString = String(data: data, encoding: .utf8) {
+                        print("Raw JSON response:\n\(jsonString)")
+                    }
+
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                        
+                        if let status = json?["status"] as? Int, status != 200 {
+                            let errorMessageFromAPI = json?["error"] as? String ?? "Unknown error occurred"
+                            errorMessage = "Error: \(errorMessageFromAPI)"
+                            return
+                        }
+
+                        let decoded = try JSONDecoder().decode(FortniteStatsResponse.self, from: data)
+                        stats = decoded.data?.stats.all.overall
+                        allStats = decoded.data?.stats.all
+                    } catch {
+                        print("Error decoding response: \(error)")
+                        errorMessage = "Could not decode response"
+                    }
+                }
+            }.resume()
+        }
+    }
+    
+    func checkIfUserIsSusbcribed(completion: @escaping (Bool) -> Void) {
+        Purchases.shared.getCustomerInfo { (customerInfo, error) in
+            if let customerInfo = customerInfo {
+                if customerInfo.entitlements[Constants.entitlementID]?.isActive == true || customerInfo.entitlements[Constants.subscription]?.isActive == true {
+                  // user has access to "your_entitlement_id"
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            } else {
+                completion(false)
+            }
+            
+            if let error = error {
+                print(error)
+                completion(false)
+            }
+        }
     }
 }
 
@@ -174,7 +294,6 @@ private struct StatGroupView: View {
             if let title = title {
                 Text(title)
                     .font(.fortnite(size: 30, weight: .bold))
-                    .padding(.bottom, 4)
                 Divider()
                     .background(Color.white.opacity(0.3))
             }
