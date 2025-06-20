@@ -19,6 +19,7 @@ struct StatsTabView: View {
     @State private var isLoading = false
     @State private var errorMessage: String?
     @State private var showPaywall = false
+    @State private var hasActiveSubscription = false
 
     private var hasUsedDailyLookup: Bool {
         let lastLookupKey = "lastStatLookupDate"
@@ -47,7 +48,7 @@ struct StatsTabView: View {
                         .shadow(color: .black.opacity(0.8), radius: 4, x: 2, y: 2)
                         .padding(.top, 32)
 
-                    if !showPaywall {
+                    if !showPaywall && !hasActiveSubscription {
                         if hasUsedDailyLookup {
                             Text("Daily stat lookup used")
                                 .font(.fortnite(size: 18, weight: .regular))
@@ -181,6 +182,11 @@ struct StatsTabView: View {
         .fullScreenCover(isPresented: $showPaywall) {
             PaywallView()
         }
+        .onAppear {
+            checkIfUserIsSusbcribed { isSubscribed in
+                hasActiveSubscription = isSubscribed
+            }
+        }
     }
 
     func fetchStats() {
@@ -200,6 +206,7 @@ struct StatsTabView: View {
         }
 
         checkIfUserIsSusbcribed { isSubscribed in
+            hasActiveSubscription = isSubscribed
             if isSubscribed {
                 // Continue to fetch stats (subscribed users)
             } else {
