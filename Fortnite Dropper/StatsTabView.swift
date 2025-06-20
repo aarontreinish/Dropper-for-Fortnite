@@ -187,6 +187,7 @@ struct StatsTabView: View {
                 hasActiveSubscription = isSubscribed
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 
     func fetchStats() {

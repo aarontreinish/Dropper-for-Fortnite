@@ -37,6 +37,7 @@ struct MainTabView: View {
         .task {
             await fetchMapLocations()
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     func fetchMapLocations() async {

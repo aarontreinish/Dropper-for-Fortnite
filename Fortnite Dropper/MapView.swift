@@ -54,6 +54,7 @@ struct MapView: View {
 
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

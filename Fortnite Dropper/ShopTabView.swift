@@ -174,6 +174,7 @@ struct ShopFilterBar: View {
         .fullScreenCover(isPresented: $showPaywall) {
             PaywallView()
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     func checkIfUserIsSusbcribed(completion: @escaping (Bool) -> Void) {

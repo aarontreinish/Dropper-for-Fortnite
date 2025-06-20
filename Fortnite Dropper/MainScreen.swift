@@ -147,6 +147,7 @@ struct MainScreen: View {
                     }
                 }
             )
+            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 

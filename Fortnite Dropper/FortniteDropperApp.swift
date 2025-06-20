@@ -22,6 +22,7 @@ struct FortniteDropperApp: App {
     var body: some Scene {
         WindowGroup {
             MainTabView()
+                .environment(\.colorScheme, .dark)
         }
     }
 }
