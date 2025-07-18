@@ -138,6 +138,7 @@ struct ShopFilterBar: View {
     let shopEntries: [ShopEntry]
     @Binding var selectedTags: Set<String>
     @State var showPaywall = false
+    @State private var isSubscribed = false
 
     var body: some View {
         HStack {
@@ -160,16 +161,25 @@ struct ShopFilterBar: View {
                                 }
                             }
                         }) {
-                            Text(tag)
-                                .font(.fortnite(size: 24, weight: .heavy))
-                                .padding(8)
-                                .background(selectedTags.contains(tag) ? Color.yellow : Color.gray.opacity(0.5))
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
+                            HStack {
+                                Text(tag)
+                                    .font(.fortnite(size: 24, weight: .heavy))
+                                if !isSubscribed {
+                                    Image(systemName: "lock.fill")
+                                        .foregroundColor(.white)
+                                }
+                            }
+                            .padding(8)
+                            .background(selectedTags.contains(tag) ? Color.yellow : Color.gray.opacity(0.5))
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
                         }
                     }
                 }.padding(.horizontal)
             }
+        }
+        .onAppear {
+            checkIfUserIsSusbcribed { _ in }
         }
         .fullScreenCover(isPresented: $showPaywall) {
             PaywallView()
@@ -180,18 +190,17 @@ struct ShopFilterBar: View {
     func checkIfUserIsSusbcribed(completion: @escaping (Bool) -> Void) {
         Purchases.shared.getCustomerInfo { (customerInfo, error) in
             if let customerInfo = customerInfo {
-                if customerInfo.entitlements[Constants.entitlementID]?.isActive == true || customerInfo.entitlements[Constants.subscription]?.isActive == true {
-                  // user has access to "your_entitlement_id"
-                    completion(true)
-                } else {
-                    completion(false)
-                }
+                let subscribed = customerInfo.entitlements[Constants.entitlementID]?.isActive == true || customerInfo.entitlements[Constants.subscription]?.isActive == true
+                isSubscribed = subscribed
+                completion(subscribed)
             } else {
+                isSubscribed = false
                 completion(false)
             }
-            
+
             if let error = error {
                 print(error)
+                isSubscribed = false
                 completion(false)
             }
         }

@@ -35,6 +35,10 @@
 		21ADA6BF2DBC153200B51D01 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 21ADA6BE2DBC153200B51D01 /* FirebaseRemoteConfig */; };
 		21ADA6C12DBC153200B51D01 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 21ADA6C02DBC153200B51D01 /* FirebaseStorage */; };
 		21ADA6C32DBC153200B51D01 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 21ADA6C22DBC153200B51D01 /* FirebaseStorageCombine-Community */; };
+		21BCF3B92E299D72001C104E /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 21BCF3B82E299D72001C104E /* KeychainSwift */; };
+		21BCF3BD2E29A2AB001C104E /* drop_location.gif in Resources */ = {isa = PBXBuildFile; fileRef = 21BCF3BA2E29A2AB001C104E /* drop_location.gif */; };
+		21BCF3BE2E29A2AB001C104E /* shop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 21BCF3BB2E29A2AB001C104E /* shop.gif */; };
+		21BCF3BF2E29A2AB001C104E /* stats.gif in Resources */ = {isa = PBXBuildFile; fileRef = 21BCF3BC2E29A2AB001C104E /* stats.gif */; };
 		21DAA1132B0BB083002B1462 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 21DAA1122B0BB083002B1462 /* GoogleService-Info.plist */; };
 		21F265A7226CC987001A8B1A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F265A6226CC987001A8B1A /* StoreKit.framework */; };
 		21FE6D212E03202400437A2F /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FE6D202E03202400437A2F /* MainScreen.swift */; };
@@ -82,6 +86,9 @@
 		2183EC3C20FF7A61002203D3 /* Burbank Big Condensed Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Burbank Big Condensed Black.ttf"; sourceTree = "<group>"; };
 		21B54F8E2DBC2666006CD887 /* Fortnite DropperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fortnite DropperTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B54F8F2DBC2666006CD887 /* Fortnite DropperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fortnite DropperUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		21BCF3BA2E29A2AB001C104E /* drop_location.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = drop_location.gif; sourceTree = "<group>"; };
+		21BCF3BB2E29A2AB001C104E /* shop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = shop.gif; sourceTree = "<group>"; };
+		21BCF3BC2E29A2AB001C104E /* stats.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = stats.gif; sourceTree = "<group>"; };
 		21DAA1122B0BB083002B1462 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		21F265A6226CC987001A8B1A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		21FE6D202E03202400437A2F /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
@@ -97,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21BCF3B92E299D72001C104E /* KeychainSwift in Frameworks */,
 				21ADA6AA2DBC14EA00B51D01 /* RevenueCat in Frameworks */,
 				21FE6D2E2E03322200437A2F /* Zoomable in Frameworks */,
 				21F265A7226CC987001A8B1A /* StoreKit.framework in Frameworks */,
@@ -177,6 +185,9 @@
 				211A437122284508001C483A /* Fortnite Bus Sound.mp3 */,
 				2131939C29461C1600B3BCE9 /* SusbcribeView.swift */,
 				21DAA1122B0BB083002B1462 /* GoogleService-Info.plist */,
+				21BCF3BA2E29A2AB001C104E /* drop_location.gif */,
+				21BCF3BB2E29A2AB001C104E /* shop.gif */,
+				21BCF3BC2E29A2AB001C104E /* stats.gif */,
 			);
 			path = "Fortnite Dropper";
 			sourceTree = "<group>";
@@ -288,6 +299,7 @@
 				21ADA6AD2DBC153200B51D01 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				21FE6D2C2E03322200437A2F /* XCRemoteSwiftPackageReference "Zoomable" */,
 				214885AC2E0349EA00466564 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				21BCF3B72E299D72001C104E /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = 2183EC0A20FE2BA6002203D3 /* Products */;
 			projectDirPath = "";
@@ -310,6 +322,9 @@
 				21DAA1132B0BB083002B1462 /* GoogleService-Info.plist in Resources */,
 				2183EC3D20FF7AB6002203D3 /* Burbank Big Condensed Black.ttf in Resources */,
 				211A437222284509001C483A /* Fortnite Bus Sound.mp3 in Resources */,
+				21BCF3BD2E29A2AB001C104E /* drop_location.gif in Resources */,
+				21BCF3BE2E29A2AB001C104E /* shop.gif in Resources */,
+				21BCF3BF2E29A2AB001C104E /* stats.gif in Resources */,
 				211A4370222844C8001C483A /* Hang Glider Sound.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -693,6 +708,14 @@
 				minimumVersion = 11.12.0;
 			};
 		};
+		21BCF3B72E299D72001C104E /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 24.0.0;
+			};
+		};
 		21FE6D2C2E03322200437A2F /* XCRemoteSwiftPackageReference "Zoomable" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ryohey/Zoomable.git";
@@ -773,6 +796,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 21ADA6AD2DBC153200B51D01 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		21BCF3B82E299D72001C104E /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 21BCF3B72E299D72001C104E /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
 		};
 		21FE6D2D2E03322200437A2F /* Zoomable */ = {
 			isa = XCSwiftPackageProductDependency;

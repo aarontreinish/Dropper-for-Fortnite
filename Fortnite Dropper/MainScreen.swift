@@ -10,6 +10,7 @@ import SwiftUI
 import Firebase
 import RevenueCatUI
 import RevenueCat
+import KeychainSwift
 
 struct MainScreen: View {
     @State private var dropResult: String?
@@ -28,6 +29,9 @@ struct MainScreen: View {
     @State private var dropSpinnerAngle: Double = 0
     @State private var challengeSpinnerAngle: Double = 0
     @State private var mapImageURL: String?
+    @AppStorage("isFirstLaunch") var isFirstLaunch: Bool = true
+    let keychain = KeychainSwift()
+    let deviceIDKey = "com.dropper.deviceID"
 
     let tapLimit = 3
     @State private var isUserSubscribed = false
@@ -112,7 +116,7 @@ struct MainScreen: View {
                 }
             }
             .sheet(isPresented: $showPaywall) {
-                PaywallView() // Use your actual paywall here
+                PaywallView()
             }
             .overlay(
                 ZStack {
@@ -148,25 +152,54 @@ struct MainScreen: View {
                 }
             )
             .navigationViewStyle(StackNavigationViewStyle())
+            .onAppear {
+                if isFirstLaunch {
+                    showPaywall = true
+                    isFirstLaunch = false
+                }
+            }
         }
     }
 
     // MARK: - Actions
 
+    func getPersistentDeviceID() -> String {
+        if let existing = keychain.get(deviceIDKey) {
+            return existing
+        } else {
+            let newID = UUID().uuidString
+            keychain.set(newID, forKey: deviceIDKey)
+            return newID
+        }
+    }
+
+    func namespacedKey(_ key: String) -> String {
+        return "\(getPersistentDeviceID())_\(key)"
+    }
+
     func getDailyTapCount() -> Int {
-        let savedDate = UserDefaults.standard.object(forKey: "lastTapDate") as? Date ?? Date.distantPast
+        let dateKey = namespacedKey("lastTapDate")
+        let countKey = namespacedKey("dailyTapCount")
+
+        let savedDateString = keychain.get(dateKey)
+        let savedDate = savedDateString.flatMap { ISO8601DateFormatter().date(from: $0) } ?? Date.distantPast
+
         if !Calendar.current.isDateInToday(savedDate) {
-            UserDefaults.standard.set(Date(), forKey: "lastTapDate")
-            UserDefaults.standard.set(0, forKey: "dailyTapCount")
+            keychain.set(ISO8601DateFormatter().string(from: Date()), forKey: dateKey)
+            keychain.set("0", forKey: countKey)
             return 0
         }
-        return UserDefaults.standard.integer(forKey: "dailyTapCount")
+
+        return Int(keychain.get(countKey) ?? "0") ?? 0
     }
 
     func incrementDailyTapCount() {
+        let countKey = namespacedKey("dailyTapCount")
+        let dateKey = namespacedKey("lastTapDate")
+
         let current = getDailyTapCount()
-        UserDefaults.standard.set(current + 1, forKey: "dailyTapCount")
-        UserDefaults.standard.set(Date(), forKey: "lastTapDate")
+        keychain.set(String(current + 1), forKey: countKey)
+        keychain.set(ISO8601DateFormatter().string(from: Date()), forKey: dateKey)
     }
 
     func handleDropTap() {

@@ -10,6 +10,7 @@
 import SwiftUI
 import RevenueCat
 import RevenueCatUI
+import KeychainSwift
 
 struct StatsTabView: View {
     @State private var username: String = ""
@@ -21,14 +22,16 @@ struct StatsTabView: View {
     @State private var showPaywall = false
     @State private var hasActiveSubscription = false
 
-    private var hasUsedDailyLookup: Bool {
-        let lastLookupKey = "lastStatLookupDate"
-        let defaults = UserDefaults.standard
-        let calendar = Calendar.current
-        if let lastLookup = defaults.object(forKey: lastLookupKey) as? Date {
-            return calendar.isDateInToday(lastLookup)
+    private var remainingLookups: Int {
+        let keychain = KeychainSwift()
+        if let lookupCountString = keychain.get("dailyStatLookupCount"),
+           let lookupCount = Int(lookupCountString),
+           let lastLookupString = keychain.get("lastStatLookupDate"),
+           let lastLookup = ISO8601DateFormatter().date(from: lastLookupString),
+           Calendar.current.isDateInToday(lastLookup) {
+            return max(0, 3 - lookupCount)
         }
-        return false
+        return 3
     }
 
     var body: some View {
@@ -49,13 +52,13 @@ struct StatsTabView: View {
                         .padding(.top, 32)
 
                     if !showPaywall && !hasActiveSubscription {
-                        if hasUsedDailyLookup {
-                            Text("Daily stat lookup used")
+                        if remainingLookups == 0 {
+                            Text("Daily stat lookups used")
                                 .font(.fortnite(size: 18, weight: .regular))
                                 .foregroundColor(.yellow)
                                 .padding(.top, -10)
                         } else {
-                            Text("1 free stat lookup remaining today")
+                            Text("\(remainingLookups) free stat lookup(s) remaining today")
                                 .font(.fortnite(size: 18, weight: .regular))
                                 .foregroundColor(.green)
                                 .padding(.top, -10)
@@ -193,15 +196,16 @@ struct StatsTabView: View {
     func fetchStats() {
         guard !username.isEmpty else { return }
 
-        // Free stat lookup gating logic
-        let lastLookupKey = "lastStatLookupDate"
-        let defaults = UserDefaults.standard
-        let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
-
-        if let lastLookup = defaults.object(forKey: lastLookupKey) as? Date,
-           calendar.isDate(lastLookup, inSameDayAs: today) {
-            errorMessage = "You’ve already used your free stat lookup for today. Subscribe to get unlimited access."
+        let keychain = KeychainSwift()
+        let today = Calendar.current.startOfDay(for: Date())
+        
+        if let lastLookupString = keychain.get("lastStatLookupDate"),
+           let lastLookup = ISO8601DateFormatter().date(from: lastLookupString),
+           Calendar.current.isDateInToday(lastLookup),
+           let lookupCountString = keychain.get("dailyStatLookupCount"),
+           let lookupCount = Int(lookupCountString),
+           lookupCount >= 3 {
+            errorMessage = "You’ve already used your 3 free stat lookups for today. Subscribe to get unlimited access."
             showPaywall = true
             return
         }
@@ -211,8 +215,16 @@ struct StatsTabView: View {
             if isSubscribed {
                 // Continue to fetch stats (subscribed users)
             } else {
-                // Allow 1 free lookup per day for non-subscribers
-                defaults.set(today, forKey: lastLookupKey)
+                if let lastLookupString = keychain.get("lastStatLookupDate"),
+                   let lastLookup = ISO8601DateFormatter().date(from: lastLookupString),
+                   Calendar.current.isDateInToday(lastLookup),
+                   let lookupCountString = keychain.get("dailyStatLookupCount"),
+                   let lookupCount = Int(lookupCountString) {
+                    keychain.set(String(lookupCount + 1), forKey: "dailyStatLookupCount")
+                } else {
+                    keychain.set("1", forKey: "dailyStatLookupCount")
+                    keychain.set(ISO8601DateFormatter().string(from: today), forKey: "lastStatLookupDate")
+                }
             }
 
             isLoading = true
