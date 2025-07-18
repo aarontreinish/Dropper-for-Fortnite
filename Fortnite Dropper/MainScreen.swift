@@ -209,7 +209,7 @@ struct MainScreen: View {
                     dropSpinnerAngle += 720
                 }
 
-                dropResult = fortniteLocations.randomElement()
+                dropResult = fortniteLocations.shuffled().first
                 showOverlayText = "Drop at: \(dropResult ?? "")"
                 triggerConfetti()
             } else {
@@ -225,7 +225,7 @@ struct MainScreen: View {
                     dropSpinnerAngle += 720
                 }
 
-                dropResult = fortniteLocations.randomElement()
+                dropResult = fortniteLocations.shuffled().first
                 showOverlayText = "Drop at: \(dropResult ?? "")"
                 triggerConfetti()
             }
@@ -243,7 +243,7 @@ struct MainScreen: View {
                     challenge.hasPrefix("\(selectedMode):") || !challenge.contains(":")
                 }
 
-                guard let challenge = filteredChallenges.randomElement() else {
+                guard let challenge = filteredChallenges.shuffled().first else {
                     showOverlayText = "No challenges available."
                     return
                 }
@@ -268,7 +268,7 @@ struct MainScreen: View {
                     challenge.hasPrefix("\(selectedMode):") || !challenge.contains(":")
                 }
 
-                guard let challenge = filteredChallenges.randomElement() else {
+                guard let challenge = filteredChallenges.shuffled().first else {
                     showOverlayText = "No challenges available."
                     return
                 }
