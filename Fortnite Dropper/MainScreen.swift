@@ -113,10 +113,19 @@ struct MainScreen: View {
                 checkIfUserIsSusbcribed { isSubscribed in
                     isUserSubscribed = isSubscribed
                     tapCountSnapshot = getDailyTapCount()
+                    
+                    if isFirstLaunch {
+                        if !isSubscribed {
+                            showPaywall = true
+                        }
+                        
+                        isFirstLaunch = false
+                    }
+                    
                 }
             }
-            .sheet(isPresented: $showPaywall) {
-                PaywallView()
+            .fullScreenCover(isPresented: $showPaywall) {
+                PurchaseView(isPresented: $showPaywall)
             }
             .overlay(
                 ZStack {
@@ -152,12 +161,6 @@ struct MainScreen: View {
                 }
             )
             .navigationViewStyle(StackNavigationViewStyle())
-            .onAppear {
-                if isFirstLaunch {
-                    showPaywall = true
-                    isFirstLaunch = false
-                }
-            }
         }
     }
 
@@ -350,7 +353,7 @@ struct MainScreen: View {
     func checkIfUserIsSusbcribed(completion: @escaping (Bool) -> Void) {
         Purchases.shared.getCustomerInfo { (customerInfo, error) in
             if let customerInfo = customerInfo {
-                if customerInfo.entitlements[Constants.entitlementID]?.isActive == true || customerInfo.entitlements[Constants.subscription]?.isActive == true {
+                if customerInfo.entitlements[Constants.subscription]?.isActive == true {
                   // user has access to "your_entitlement_id"
                     completion(true)
                 } else {

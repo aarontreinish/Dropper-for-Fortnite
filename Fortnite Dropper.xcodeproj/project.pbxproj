@@ -18,8 +18,9 @@
 		214885AE2E0349EA00466564 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 214885AD2E0349EA00466564 /* SDWebImageSwiftUI */; };
 		214885B02E03649200466564 /* FortniteShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214885AF2E03649200466564 /* FortniteShopView.swift */; };
 		214DE3E2217BBBAC006795D6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 214DE3E1217BBBAC006795D6 /* WebKit.framework */; };
+		216C4CF02E61F86B0097900D /* PurchaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4CEF2E61F86B0097900D /* PurchaseModel.swift */; };
+		216C4CF22E61F88E0097900D /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4CF12E61F88E0097900D /* PurchaseView.swift */; };
 		2183EC0D20FE2BA6002203D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2183EC0C20FE2BA6002203D3 /* AppDelegate.swift */; };
-		2183EC0F20FE2BA6002203D3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2183EC0E20FE2BA6002203D3 /* ViewController.swift */; };
 		2183EC1720FE2BB2002203D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2183EC1520FE2BB2002203D3 /* LaunchScreen.storyboard */; };
 		2183EC3D20FF7AB6002203D3 /* Burbank Big Condensed Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2183EC3C20FF7A61002203D3 /* Burbank Big Condensed Black.ttf */; };
 		21ADA6AA2DBC14EA00B51D01 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 21ADA6A92DBC14EA00B51D01 /* RevenueCat */; };
@@ -78,9 +79,10 @@
 		214885AA2E03417D00466564 /* ShopResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopResponse.swift; sourceTree = "<group>"; };
 		214885AF2E03649200466564 /* FortniteShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortniteShopView.swift; sourceTree = "<group>"; };
 		214DE3E1217BBBAC006795D6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		216C4CEF2E61F86B0097900D /* PurchaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseModel.swift; sourceTree = "<group>"; };
+		216C4CF12E61F88E0097900D /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
 		2183EC0920FE2BA6002203D3 /* Fortnite Dropper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fortnite Dropper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2183EC0C20FE2BA6002203D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2183EC0E20FE2BA6002203D3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2183EC1620FE2BB2002203D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2183EC1820FE2BB2002203D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2183EC3C20FF7A61002203D3 /* Burbank Big Condensed Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Burbank Big Condensed Black.ttf"; sourceTree = "<group>"; };
@@ -164,9 +166,10 @@
 		2183EC0B20FE2BA6002203D3 /* Fortnite Dropper */ = {
 			isa = PBXGroup;
 			children = (
+				216C4CF12E61F88E0097900D /* PurchaseView.swift */,
+				216C4CEF2E61F86B0097900D /* PurchaseModel.swift */,
 				2183EC0C20FE2BA6002203D3 /* AppDelegate.swift */,
 				21FE6D242E0320A000437A2F /* Constants.swift */,
-				2183EC0E20FE2BA6002203D3 /* ViewController.swift */,
 				21FE6D202E03202400437A2F /* MainScreen.swift */,
 				214885A42E033B7600466564 /* StatsTabView.swift */,
 				214885A62E033B8400466564 /* FortniteStatsResponse.swift */,
@@ -353,8 +356,9 @@
 				21FE6D212E03202400437A2F /* MainScreen.swift in Sources */,
 				21FE6D292E03317600437A2F /* MapView.swift in Sources */,
 				214885AB2E03417D00466564 /* ShopResponse.swift in Sources */,
+				216C4CF22E61F88E0097900D /* PurchaseView.swift in Sources */,
 				214885A72E033B8400466564 /* FortniteStatsResponse.swift in Sources */,
-				2183EC0F20FE2BA6002203D3 /* ViewController.swift in Sources */,
+				216C4CF02E61F86B0097900D /* PurchaseModel.swift in Sources */,
 				21FE6D232E03208200437A2F /* FortniteDropperApp.swift in Sources */,
 				2183EC0D20FE2BA6002203D3 /* AppDelegate.swift in Sources */,
 				21FE6D2B2E03318900437A2F /* FortniteMapResponse.swift in Sources */,

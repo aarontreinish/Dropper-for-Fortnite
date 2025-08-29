@@ -182,7 +182,7 @@ struct ShopFilterBar: View {
             checkIfUserIsSusbcribed { _ in }
         }
         .fullScreenCover(isPresented: $showPaywall) {
-            PaywallView()
+            PurchaseView(isPresented: $showPaywall)
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
