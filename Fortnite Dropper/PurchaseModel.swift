@@ -33,8 +33,8 @@ class PurchaseModel: ObservableObject {
         //initialise your productids and product details
         self.productIds = ["vic_roy_subscription_yearly", "vic_roy_subscription_weekly"]
         self.productDetails = [
-            PurchaseProductDetails(price: "$25.99", productId: "vic_roy_subscription_yearly", duration: "year", durationPlanName: "Yearly Plan", hasTrial: false),
-            PurchaseProductDetails(price: "$4.99", productId: "vic_roy_subscription_weekly", duration: "week", durationPlanName: "3-Day Trial", hasTrial: true)
+            PurchaseProductDetails(price: "$29.99", productId: "vic_roy_subscription_yearly", duration: "year", durationPlanName: "Yearly Plan", hasTrial: false),
+            PurchaseProductDetails(price: "$3.99", productId: "vic_roy_subscription_weekly", duration: "week", durationPlanName: "3-Day Trial", hasTrial: true)
         ]
 
     }

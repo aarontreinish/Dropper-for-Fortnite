@@ -182,9 +182,13 @@ struct StatsTabView: View {
                 .padding()
             }
         }
-        .fullScreenCover(isPresented: $showPaywall) {
+        .fullScreenCover(isPresented: $showPaywall, onDismiss: {
+            checkIfUserIsSusbcribed { isSubscribed in
+                hasActiveSubscription = isSubscribed
+            }
+        }, content: {
             PurchaseView(isPresented: $showPaywall)
-        }
+        })
         .onAppear {
             checkIfUserIsSusbcribed { isSubscribed in
                 hasActiveSubscription = isSubscribed

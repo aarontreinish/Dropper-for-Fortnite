@@ -124,9 +124,14 @@ struct MainScreen: View {
                     
                 }
             }
-            .fullScreenCover(isPresented: $showPaywall) {
+            .fullScreenCover(isPresented: $showPaywall, onDismiss: {
+                checkIfUserIsSusbcribed { isSubscribed in
+                    isUserSubscribed = isSubscribed
+                    tapCountSnapshot = getDailyTapCount()
+                }
+            }, content: {
                 PurchaseView(isPresented: $showPaywall)
-            }
+            })
             .overlay(
                 ZStack {
                     if showConfetti {

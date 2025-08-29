@@ -22,6 +22,7 @@
 //      the word "FREE"
 
 import SwiftUI
+import RevenueCat
 
 struct PurchaseView: View {
     
@@ -289,7 +290,7 @@ struct PurchaseView: View {
                                 //productManager.purchaseProduct()
                                 if !purchaseModel.isPurchasing {
                                     Task {
-                                        await purchaseModel.purchaseSubscription(productId: self.selectedProductId)
+                                        await purchaseSubscription(productId: self.selectedProductId)
                                     }
                                 }
                             }) {
@@ -367,12 +368,12 @@ struct PurchaseView: View {
                             ActionSheet(title: Text("View Terms & Conditions"), message: nil,
                                         buttons: [
                                             .default(Text("Terms of Use"), action: {
-                                                if let url = URL(string: "https://example.com") {
+                                                if let url = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/") {
                                                     UIApplication.shared.open(url)
                                                 }
                                             }),
                                             .default(Text("Privacy Policy"), action: {
-                                                if let url = URL(string: "https://example.com") {
+                                                if let url = URL(string: "https://doc-hosting.flycricket.io/dropper-for-fortnite-privacy-policy/81bf4fe9-a9b2-4694-b3c4-b1a58bb8f5d9/privacy") {
                                                     UIApplication.shared.open(url)
                                                 }
                                             }),
@@ -423,6 +424,27 @@ struct PurchaseView: View {
         }
         
         
+    }
+    
+    func purchaseSubscription(productId: String) async {
+        //trigger purchase process
+        Purchases.shared.getProducts([productId]) { storeProducts in
+            if let storeProduct = storeProducts.first {
+                Task {
+                    let result = try await Purchases.shared.purchase(product: storeProduct)
+                    if result.customerInfo.entitlements[Constants.subscription]?.isActive == true {
+                        DispatchQueue.main.async {
+                            isPresented = false
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func restorePurchases() {
+        //trigger restore purchases
+        Purchases.shared.restorePurchases()
     }
     
     private func startShaking() {
